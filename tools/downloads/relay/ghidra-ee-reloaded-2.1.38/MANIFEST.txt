@@ -1,0 +1,6 @@
+name=ghidra-ee-reloaded-2.1.38
+source_url=https://github.com/chaoticgd/ghidra-emotionengine-reloaded/releases/download/v2.1.38/ghidra_12.0.2_PUBLIC_20261004_ghidra-emotionengine-reloaded.zip
+archive=ghidra_12.0.2_PUBLIC_20261004_ghidra-emotionengine-reloaded.zip
+archive_sha256=a9ce84b2408a50a2cb7a767e217971ed2c20a46773eb82b3ce8d3c921681bc01
+archive_bytes=917779
+fetched_utc=2026-10-17T19:13:27Z
