@@ -1,0 +1,46 @@
+{
+  "scope": "Original synthetic infrastructure fixture, NOT US game analysis",
+  "date": "2026-10-17",
+  "upstream_ps2recomp_commit": "eb8688b2fd191129f103a39543002c005b33409c",
+  "ghidra": "12.0.2 + EmotionEngine 2.1.38 / r5900:LE:32:default",
+  "elf": {
+    "bytes": 272,
+    "sha256": "8d1c23a57b26f39445f993b396bd2962b711b4ab4c746f4d00c472e5d6f7ad7f",
+    "entry": "0x00100000"
+  },
+  "map_counts": {
+    "ghidra_records": 1,
+    "ghidra_functions": 1,
+    "ghidra_code_labels": 0,
+    "analyzer_records": 1,
+    "common_starts": 1,
+    "same_end_at_common_start": 0
+  },
+  "boundary_disagreements": [
+    {
+      "start": "0x00100000",
+      "ghidra_end": "0x0010000c",
+      "analyzer_end": "0x00100010"
+    }
+  ],
+  "interpretation": "Same start; Ghidra end excludes the final post-return NOP padding, analyzer end includes it. Different boundaries are reported, not silently equated.",
+  "upstream_cli_and_adapter_toml_equal": true,
+  "synthetic_cpp_generated": true,
+  "offline_dependency_rebuild": {
+    "cmake_fully_disconnected": true,
+    "source_archive": "tools/analyzer_deps.json",
+    "native_exporter_built": true
+  },
+  "validation": {
+    "infra_passed": 31,
+    "infra_failed": 0,
+    "project_ctest_passed": 7,
+    "gs_passed": 45,
+    "iop_passed": 4,
+    "comparator_regression_tests": 7,
+    "dependency_restore_tests": 5
+  },
+  "us_full_elf_local": false,
+  "us_full_export_analyzer_codegen_complete": false,
+  "us_missing_elf_gate_exit": 2
+}

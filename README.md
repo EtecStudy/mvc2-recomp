@@ -11,7 +11,8 @@ Ghidra 12.1.4 + [REA](https://github.com/morluto/rea).
 > FASE 1: server-side ELF verified, five local windows decoded in Ghidra;
 > full-ELF analysis and US game C++ generation remain pending.
 > Earlier Japanese inventory/scouting is historical only, not US evidence.
-> Toolchain restored/revalidated; synthetic ELF → Ghidra → C++ probe passes.
+> Toolchain tested: synthetic Ghidra → independent analyzer comparison → C++.
+> Infrastructure 31/31; full US ELF transfer is still the blocking step.
 > IOP: 41 images inventoried; AFS00/AFS02 missing from uploaded US list.
 > USA findings: [`analysis/scout/slus_20486/`](analysis/scout/slus_20486/).
 

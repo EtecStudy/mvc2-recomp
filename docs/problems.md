@@ -162,3 +162,29 @@ synthetic regression test; corrected v2 pass rehashed all41 originals,
 preserved16 slots, failed0. v1 export counts superseded; ROMDIR/asset/v1
 import hashes unaffected by this bug. Local canonical v2 copy checked
 against independent SQL SHA. No originals changed.
+
+
+## P-011 — Analyzer TOML address tokens are not a function-map comparison · FIXED
+
+The prior step only printed Ghidra record count and a regex count of
+hexadecimal tokens in analyzer TOML. Upstream TOML stores selector/MMIO/
+jump-table information, not every discovered function. That was not a
+valid independent address-overlap check.
+
+Added a small exporter using pinned upstream ElfAnalyzer::getFunctions()
+without importing Ghidra CSV. Added strict CSV/ELF/config provenance
+validation, entry/range checks and explicit boundary/set differences.
+Ghidra remains authoritative. Synthetic upstream CLI/adapter TOML parity
+and Ghidra→compare→C++ passed; regression tests cover malformed/empty,
+duplicate/out-of-file/BSS maps and mismatched config/export metadata.
+The synthetic case actually has one boundary disagreement, correctly
+reported rather than hidden. Full US execution remains pending P-006.
+
+### P-006 capability recheck (same date)
+
+Supabase connector reloaded: SQL/metadata/function management only, no
+Storage-object download-to-workspace method. SQL independently reverified
+all41 staged chunks:3,942,320B, expected US SHA, verified=true. No new
+binary delivery route was found; unchanged TLS/receiver/public game-data
+relay routes were not repeated. Actual pipeline still exits2 on absent
+full US ELF before analysis/codegen; no target bypass introduced.

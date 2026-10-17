@@ -177,6 +177,14 @@ else
 fi
 
 # ---------------------------------------------------------------------------
+step "5b. Independent analyzer map exporter"
+if [ -x tools/ps2recomp/bin/mvc2_analyzer_export ]; then
+  echo "  ok: mvc2_analyzer_export"
+else
+  bash scripts/build_analyzer_export.sh
+fi
+
+# ---------------------------------------------------------------------------
 step "6. REA (npm ci + build)"
 if [ -f tools/rea/rea/dist/main.js ]; then
   echo "  ok: rea $(cd tools/rea/rea && node scripts/rea.mjs --version 2>/dev/null)"

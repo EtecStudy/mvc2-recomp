@@ -136,3 +136,31 @@ The function source is preserved in this repo's docs history (this section
 caller if ever needed again. NOTE: legacy anon/publishable keys were
 rejected by the functions gateway (`UNAUTHORIZED_INVALID_JWT_FORMAT`) —
 v1–v3 ran with `verify_jwt=false` for minutes and were then deleted (P-003).
+
+
+## Full-map cross-check implementation (2026-10-17 correction)
+
+Do not estimate analyzer functions by counting address-like strings in
+its TOML: those include selectors/MMIO/jump-table targets, not a complete
+function map. `fase1_analyze.sh` now uses a separate adapter to the pinned
+upstream analyzer library, independently exporting its actual function
+vector via `getFunctions()` to `mvc2_analyzer_functions.csv`. It never
+imports the authoritative Ghidra map.
+
+After normalizing the Ghidra config, `compare_function_maps.py` checks:
+ELF32-LE/MIPS executable and file-backed executable ranges; both config
+input paths; Ghidra map path and exporter record/function/label totals;
+CSV syntax, unique/aligned starts and valid body sizes/ranges; entry
+coverage in both maps. It writes `function_comparison.json` with source
+hashes, common starts, one-sided starts and differing end extents.
+Ghidra labels remain distinguishable in export totals; non-contiguous
+bodies may have Size < End-Start. Disagreements are reported, not merged
+into SDK identities, runtime proofs or automatic patches/stubs.
+
+Original synthetic ELF testing found one common entry but differing ends:
+Ghidra 0x0010000C vs analyzer 0x00100010 (trailing post-return NOP).
+The check correctly reports this; it does not manufacture full agreement.
+The adapter's TOML equals the upstream CLI's on that fixture, and the
+Ghidra-derived config still generates C++. See
+`analysis/validation/analyzer_crosscheck_probe.json`. **No US whole-game
+map comparison has yet run** because the complete ELF is still not local.

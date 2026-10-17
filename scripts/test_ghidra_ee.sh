@@ -34,8 +34,23 @@ assert d and rows, 'No exported functions from synthetic probe'
 print(f'PASS: Ghidra 12.0.2 / r5900 imports synthetic ELF; ExportPS2Functions produces TOML + CSV ({len(rows)} rows)')
 PY
 
-# Prove the translator works on the original synthetic function, not game code.
+# Compare independently discovered maps. Also establish adapter TOML parity
+# with the unmodified upstream CLI for this synthetic ELF.
+tools/ps2recomp/bin/ps2_analyzer "$WORK/probe.elf" "$WORK/upstream.toml" \
+  > builddir/logs/analyzer-upstream-probe.log 2>&1
+tools/ps2recomp/bin/mvc2_analyzer_export "$WORK/probe.elf" "$WORK/analyzer.toml" "$WORK/analyzer.csv" \
+  > builddir/logs/analyzer-export-probe.log 2>&1
+python3 - "$WORK" <<'PY2'
+import pathlib,sys,tomllib
+p=pathlib.Path(sys.argv[1])
+assert tomllib.loads((p/'upstream.toml').read_text()) == tomllib.loads((p/'analyzer.toml').read_text()), 'Adapter changed upstream analyzer configuration semantics'
+PY2
 python3 scripts/normalize_recomp_config.py "$WORK/probe.toml" "$WORK/cpp"
+python3 scripts/compare_function_maps.py "$WORK/probe.elf" \
+  "$WORK/probe.csv" "$WORK/analyzer.csv" "$WORK/probe.toml" "$WORK/analyzer.toml" \
+  builddir/logs/synthetic-map-comparison.json
+
+# Prove the translator works on the original synthetic function, not game code.
 timeout 120 tools/ps2recomp/bin/ps2_recomp "$WORK/probe.toml" \
   > builddir/logs/recomp-synthetic-probe.log 2>&1
 find "$WORK/cpp" -name '*.cpp' -type f | grep -q .

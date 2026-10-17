@@ -63,3 +63,35 @@ Equivalent published package: `rea-agents@6.5.0` (same source tree).
 | `tools/ps2recomp/bin/ps2_recomp` (2.1 MB) | PS2Recomp @ eb8688b | `scripts/build_ps2recomp.sh` |
 | `tools/ps2recomp/bin/ps2_analyzer` (14 MB) | PS2Recomp @ eb8688b | `scripts/build_ps2recomp.sh` |
 | `builddir/ps2recomp/ps2xTest/gs_cache/ps2_gs_*_tests` | PS2Recomp tests | same build (`ctest --test-dir …/gs_cache`: 45/45) |
+
+
+## Independent analyzer-map adapter and offline dependencies — 2026-10-17
+
+`tools/ps2recomp/bin/mvc2_analyzer_export` is built from the repository's
+`scripts/analyzer_export.cpp` against the same pinned `ps2_analyzer_lib`.
+A CMake project-include adds its target without patching upstream sources.
+It calls `analyze()`, `generateToml()` and `getFunctions()`; **never** imports
+Ghidra's CSV. Synthetic parity against the unmodified upstream CLI passed.
+Build: `bash scripts/build_analyzer_export.sh` (one compiler worker).
+
+`tools/analyzer_deps.json` pins all six dependency source commits and the
+local source-tree archive `tools/downloads/analyzer-deps.tar.gz`:
+**29,709,228 bytes**, SHA-256
+`a3a0a00cc6d26ca09d69ebdaea32faeddf8ac469545228c239908687139ff800`.
+This is a local snapshot digest, not an upstream release digest. Archive
+contains third-party source trees/tests/licenses but no .git directories
+or game bytes. Only its manifest is tracked; the ignored archive persists
+subject to the existing snapshot-size limits (P-007).
+
+`restore_analyzer_deps.py` verifies length/hash, rejects unsafe paths/links,
+and emits local FetchContent overrides + FULLY_DISCONNECTED=ON. The
+adapter was rebuilt using that cache successfully. A future rebuild uses
+it automatically when present, without consulting GitHub. If the ignored
+archive is lost, pinned FetchContent/source restoration is still required;
+do not claim permanent snapshot retention. Rabbitizer has no CMakeLists;
+its sentinel is include/rabbitizer.h, as upstream builds its sources.
+
+After successful archive restoration/offline rebuild, redundant initial
+FetchContent clones were removed to reduce snapshot pressure. Active
+source trees remain under `builddir/analyzer-deps/`; the native target
+and synthetic end-to-end probe passed again after that cleanup.

@@ -224,3 +224,25 @@ facts live under `analysis/scout/slus_20486/`; old root scout files are JP.
     fixtures 4/4; fact consistency 5/5; infra **29/29**, project CTest
     **5/5**, GS45/45, IOP4/4. Temporary IOP functions/tokens removed; Edge
     listing empty. Full ELF/export/analyzer/game C++ still pending P-006.
+
+
+## Analyzer cross-check correction — 2026-10-17
+
+41. The analyzer TOML is **not** a complete function map. Prior regex
+    address counts did not establish Ghidra/analyzer overlap. Added a
+    compiled adapter using upstream's actual function vector; no Ghidra
+    import or upstream-source patch. CLI/adapter TOML parity passed.
+42. Native exporter built, then rebuilt with six hash-pinned local source
+    dependencies and CMake FULLY_DISCONNECTED. A 29,709,228-byte ignored
+    archive + tracked commit/digest manifest supports offline rebuilds,
+    subject to P-007 snapshot limits. Rabbitizer's no-CMakeLists case fixed.
+43. Original synthetic272B ELF has one common start but different ends:
+    Ghidra0010000C vs analyzer00100010 (post-return NOP). New validator
+    reports disagreement correctly and still permits Ghidra-driven C++.
+    It validates input/map provenance, ELF bounds/entry, CSV records and
+    function/label totals; no SDK/runtime proof or merged map inferred.
+44. Validation:infra31/31, projectCTest7/7, comparator regression7/7,
+    dependency restore5/5, GS45/45, IOP4/4. US chunks independently
+    reverified in SQL; full local ELF still absent (pipeline exit2).
+    Synthetic map/C++ success must not be reported as US whole-game
+    exports/analyzer comparison/codegen.

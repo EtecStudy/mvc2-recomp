@@ -62,9 +62,15 @@ GH12="$MVC2_ROOT/tools/ghidra/ghidra_12.0.2_PUBLIC"
   && ok "R5900 sleigh compiled (.sla cached)" || bad "r5900.sla" "extension not installed/compiled"
 
 bash scripts/test_ghidra_ee.sh >/dev/null 2>&1 \
-  && ok "synthetic R5900 import + TOML/CSV + C++" || bad "R5900 end-to-end" "see builddir/logs/ghidra-ee-probe.log"
+  && ok "synthetic R5900 -> independent map cross-check -> C++" || bad "R5900 end-to-end" "see builddir/logs/ghidra-ee-probe.log"
 bash tests/test_target.sh >/dev/null 2>&1 \
   && ok "active US target guards" || bad "target guard" "tests/test_target.sh failed"
+
+python3 tests/test_compare_function_maps.py >/dev/null 2>&1 \
+  && ok "function map validation/comparison regression tests" || bad "map comparison" "tests/test_compare_function_maps.py failed"
+
+python3 tests/test_restore_analyzer_deps.py >/dev/null 2>&1 \
+  && ok "verified offline dependency restore / unsafe archive rejection" || bad "analyzer dependency restore" "tests/test_restore_analyzer_deps.py failed"
 
 sect "USA IOP metadata"
 node --test tests/test_iop_inventory.mjs >/dev/null 2>&1 \

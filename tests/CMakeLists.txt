@@ -13,3 +13,7 @@ find_program(NODE_EXECUTABLE node REQUIRED)
 add_test(NAME infra.iop_parser COMMAND "${NODE_EXECUTABLE}" --test "${CMAKE_CURRENT_SOURCE_DIR}/test_iop_inventory.mjs")
 
 add_test(NAME infra.iop_facts COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/test_iop_facts.py")
+
+add_test(NAME infra.function_map_comparison COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/test_compare_function_maps.py")
+
+add_test(NAME infra.analyzer_deps_restore COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/test_restore_analyzer_deps.py")

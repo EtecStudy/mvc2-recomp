@@ -9,10 +9,10 @@
 #   1. Ghidra 12.0.2 + EmotionEngine (r5900:LE:32:default) headless import
 #      with auto-analysis, then PS2Recomp's ExportPS2Functions.java
 #      -> generated/config/slus_20486/mvc2.toml + mvc2_functions.csv
-#   2. ps2_analyzer cross-check -> generated/config/slus_20486/mvc2_analyzer.toml
-#   3. Printed comparison summary (function counts / address overlap)
-#   4. TOML normalization for this small machine:
+#   2. Upstream ElfAnalyzer via adapter -> independent TOML + function CSV
+#   3. TOML normalization for this small machine:
 #      general.low_memory_mode=true, output_worker_threads=1 (PS2-16)
+#   4. Validate final configs/maps; compare actual starts and end extents
 #   5. With --recomp: run ps2_recomp (LONG on 2 cores; runs detached-ish
 #      under tee; generated C++ lands in generated/cpp, gitignored)
 #
@@ -30,13 +30,18 @@ DO_RECOMP=0
 [ "${2:-}" = "--recomp" ] && DO_RECOMP=1
 source scripts/target.sh
 mvc2_verify_target "$ELF" || exit $?
+if [ ! -x tools/ps2recomp/bin/mvc2_analyzer_export ]; then
+  bash scripts/build_analyzer_export.sh
+fi
 
 GH_EE="$MVC2_ROOT/tools/ghidra/ghidra_12.0.2_PUBLIC"
 mkdir -p generated/config/slus_20486 analysis/ghidra_projects builddir/logs
 
 # Avoid treating stale exports as a successful run (headless can log script
 # errors without a failing process status). Only derived US outputs are removed.
-rm -f generated/config/slus_20486/mvc2.toml generated/config/slus_20486/mvc2_functions.csv
+rm -f generated/config/slus_20486/mvc2.toml generated/config/slus_20486/mvc2_functions.csv \
+  generated/config/slus_20486/mvc2_analyzer.toml generated/config/slus_20486/mvc2_analyzer_functions.csv \
+  generated/config/slus_20486/function_comparison.json
 
 echo "== step 1: Ghidra 12.0.2 + r5900 -> ExportPS2Functions =="
 "$GH_EE/support/analyzeHeadless" "$MVC2_ROOT/analysis/ghidra_projects" mvc2_slus20486 \
@@ -53,32 +58,23 @@ echo "  ghidra exit: ${PIPESTATUS[0]} (full log: builddir/logs/slus20486-fase1-g
 test -s generated/config/slus_20486/mvc2.toml
 test -s generated/config/slus_20486/mvc2_functions.csv
 
-echo "== step 2: ps2_analyzer cross-check =="
-tools/ps2recomp/bin/ps2_analyzer "$ELF" generated/config/slus_20486/mvc2_analyzer.toml 2>&1 \
+echo "== step 2: independent upstream analyzer map (no Ghidra import) =="
+tools/ps2recomp/bin/mvc2_analyzer_export "$ELF" \
+  generated/config/slus_20486/mvc2_analyzer.toml \
+  generated/config/slus_20486/mvc2_analyzer_functions.csv 2>&1 \
   | tee builddir/logs/slus20486-fase1-analyzer.log | tail -6
 
-echo "== step 3: comparison summary =="
-python3 - <<'PY'
-import csv, re, pathlib
-gh = pathlib.Path('generated/config/slus_20486/mvc2_functions.csv')
-gh_addr = set()
-if gh.exists():
-    for row in csv.DictReader(gh.open()):
-        try: gh_addr.add(int(row['Start'], 16))
-        except Exception: pass
-assert gh_addr, "No valid function/label starts exported; refusing codegen"
-print(f"  ghidra csv functions/labels: {len(gh_addr)}")
-an = pathlib.Path('generated/config/slus_20486/mvc2_analyzer.toml')
-if an.exists():
-    txt = an.read_text(errors='ignore')
-    m = re.findall(r'0x[0-9a-fA-F]{8}', txt)
-    print(f"  analyzer toml size: {len(txt)} bytes, address-like tokens: {len(m)}")
-print("  Target: SLUS_204.86; no Japanese function counts are reused.")
-PY
-
-echo "== step 4: TOML normalization (low memory, 1 worker) =="
+echo "== step 3: TOML normalization (low memory, 1 worker) =="
 python3 scripts/normalize_recomp_config.py \
   generated/config/slus_20486/mvc2.toml generated/cpp/slus_20486
+
+echo "== step 4: validated map cross-check =="
+python3 scripts/compare_function_maps.py "$ELF" \
+  generated/config/slus_20486/mvc2_functions.csv \
+  generated/config/slus_20486/mvc2_analyzer_functions.csv \
+  generated/config/slus_20486/mvc2.toml \
+  generated/config/slus_20486/mvc2_analyzer.toml \
+  generated/config/slus_20486/function_comparison.json
 
 if [ "$DO_RECOMP" = "1" ]; then
   echo "== step 5: ps2_recomp (LONG — 2 cores; generated/cpp) =="

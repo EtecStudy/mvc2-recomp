@@ -102,3 +102,24 @@ Setup now enforces manifest source pins, verifies the reassembled JDK hash,
 and distinguishes Ghidra versions explicitly. Native decompiler validation
 no longer treats missing executables as passes. Graphics runtime P-005 is
 still a later-phase Linux X11/Wayland dependency issue, not an EE-codegen issue.
+
+
+## Independent analyzer CSV exporter
+
+```bash
+bash scripts/build_analyzer_export.sh
+```
+
+Builds only the analyzer adapter/library dependency chain, not the GUI or
+runtime/tests that require missing Linux development packages. Uses one
+compiler worker to limit memory; source injection leaves upstream files
+unchanged. `setup_tools.sh` now includes this adapter. `test_ghidra_ee.sh`
+proves analyzer CLI/adapter TOML parity, compares independent CSV maps,
+then generates C++ from the Ghidra config on original synthetic code.
+
+A hash-pinned 29.7MB local dependency archive is verified/restored by
+`scripts/restore_analyzer_deps.py`; CMake local source overrides and
+FULLY_DISCONNECTED were used in a successful rebuild. Pin/digest details:
+`tools/analyzer_deps.json`. No archive/game bytes are committed. Initial
+restore caught an incorrect CMakeLists assumption for Rabbitizer; fixed
+to its actual include/rabbitizer.h sentinel and covered by restore tests.

@@ -188,3 +188,13 @@ IRX/ROMDIR parser4/4 and Python offline fact checks5/5), GS45/45, IOP4/4.
 `bash scripts/fase1_helper.sh` separately passed Ghidra12.0.2+EE partial
 helper analysis. No full-game C++ generation was performed. Evidence:
 `analysis/scout/slus_20486/iop_report.md`; ignored logs in `builddir/logs/`.
+
+
+### Independent analyzer cross-check follow-up
+
+2026-10-17:infra **31/31**, project CTest **7/7**, GS45/45 and IOP4/4.
+New comparator7/7 and dependency restore5/5 are registered. Synthetic
+Ghidra→independent native analyzer map comparison→C++ passed, including
+explicitly reported unequal end extents. Offline dependency rebuild
+passed. See `analysis/validation/analyzer_crosscheck_probe.json`; these
+are infrastructure facts, not successful game analysis.
