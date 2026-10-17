@@ -112,6 +112,54 @@ EOF
 fi
 
 # ---------------------------------------------------------------------------
+step "4b. Ghidra 12.0.2 + EmotionEngine extension (R5900, FASE 1)"
+# REA pins Ghidra 12.1.4 (step 4), but the R5900 processor module
+# (chaoticgd/ghidra-emotionengine-reloaded) releases target 12.0.x.
+# Both installs coexist: 12.1.4 -> REA, 12.0.2+EE -> ExportPS2Functions.
+extract_zip_perms() { # zip destdir
+  python3 - "$1" "$2" <<'PY'
+import zipfile, os, sys
+z = zipfile.ZipFile(sys.argv[1])
+for info in z.infolist():
+    z.extract(info, sys.argv[2])
+    m = (info.external_attr >> 16) & 0o7777
+    if m:
+        try: os.chmod(os.path.join(sys.argv[2], info.filename), m)
+        except Exception: pass
+print('  extracted', len(z.infolist()), 'entries from', sys.argv[1])
+PY
+}
+relay_or_local() { # relay-name archive-name sha256 -> echoes archive path in tools/downloads
+  local name="$1" arc="$2" sha="$3"
+  if have "tools/downloads/$arc"; then
+    ( cd tools/downloads && echo "$sha  $arc" | sha256sum -c - >/dev/null ) && { echo "tools/downloads/$arc"; return 0; }
+  fi
+  if have "tools/downloads/relay/$name/MANIFEST.sha256"; then
+    ( cd "tools/downloads/relay/$name" && sha256sum -c MANIFEST.sha256 >/dev/null )
+    cat "tools/downloads/relay/$name"/*.part* > "tools/downloads/$arc"
+    ( cd tools/downloads && echo "$sha  $arc" | sha256sum -c - >/dev/null ) && { echo "tools/downloads/$arc"; return 0; }
+  fi
+  return 1
+}
+GH12_DIR=tools/ghidra/ghidra_12.0.2_PUBLIC
+EE_DIR="$GH12_DIR/Ghidra/Extensions/ghidra-emotionengine-reloaded"
+if [ -x "$GH12_DIR/support/analyzeHeadless" ] && [ -d "$EE_DIR/data/languages" ]; then
+  echo "  ok: $GH12_DIR + EmotionEngine extension"
+else
+  if ARC=$(relay_or_local ghidra-12.0.2 ghidra_12.0.2_PUBLIC_20260129.zip cf6e9de0b4d6e4ad2810bb4cd7fda59da726a98a454cd140694782aeaf2580e1); then
+    [ -d "$GH12_DIR" ] || extract_zip_perms "$ARC" tools/ghidra
+  else
+    echo "  MISSING ghidra 12.0.2: bump tools/.fetch-requests, commit+push, git pull, re-run."
+  fi
+  if ARC=$(relay_or_local ghidra-ee-reloaded-2.1.38 ghidra_12.0.2_PUBLIC_20261004_ghidra-emotionengine-reloaded.zip a9ce84b2408a50a2cb7a767e217971ed2c20a46773eb82b3ce8d3c921681bc01); then
+    # extension must be INSTALLED under Ghidra/Extensions/ (not Extensions/Ghidra/)
+    [ -d "$EE_DIR" ] || extract_zip_perms "$ARC" "$GH12_DIR/Ghidra/Extensions"
+  else
+    echo "  MISSING EE extension: same relay flow as above."
+  fi
+fi
+
+# ---------------------------------------------------------------------------
 step "5. PS2Recomp build (ps2_recomp + ps2_analyzer)"
 if have tools/ps2recomp/bin/ps2_recomp && have tools/ps2recomp/bin/ps2_analyzer; then
   echo "  ok: tools/ps2recomp/bin/{ps2_recomp,ps2_analyzer}"

@@ -48,6 +48,18 @@ sect "Ghidra 12.1.4"
 "$GHIDRA_INSTALL_DIR/Ghidra/Features/Decompiler/os/linux_x86_64/decompile" </dev/null >/dev/null 2>&1 \
   && ok "native decompiler binary starts" || ok "native decompiler binary present (exit!=0 on empty input is normal)"
 
+sect "Ghidra 12.0.2 + EmotionEngine (R5900)"
+GH12="$MVC2_ROOT/tools/ghidra/ghidra_12.0.2_PUBLIC"
+[ -x "$GH12/support/analyzeHeadless" ] && ok "12.0.2 analyzeHeadless present" || bad "ghidra-12.0.2" "missing"
+[ -f "$GH12/Ghidra/Extensions/ghidra-emotionengine-reloaded/data/languages/r5900.sla" ] \
+  && ok "R5900 sleigh compiled (.sla cached)" || bad "r5900.sla" "extension not installed/compiled"
+
+sect "ps2xIOP (upstream IOP subsystem)"
+if [ -d builddir/ps2xiop ]; then
+  (cd builddir/ps2xiop && timeout 120 ctest -Q >/dev/null 2>&1) \
+    && ok "ps2xIOP suite (4 tests)" || bad "ps2xIOP suite" "ctest failed"
+else bad "ps2xIOP" "builddir/ps2xiop missing (see docs/build.md)"; fi
+
 sect "REA 6.5.0 + Ghidra provider"
 if [ -f tools/rea/rea/dist/main.js ]; then
   v=$(cd tools/rea/rea && node scripts/rea.mjs --version 2>/dev/null)

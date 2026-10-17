@@ -26,6 +26,8 @@ targets are enabled).
 | Archive (in `tools/downloads/`) | Bytes | SHA-256 | Official source |
 |---|---|---|---|
 | `ghidra_12.1.4_PUBLIC_20260921.zip` | 569,649,598 | `ddac49f903da9d5bac833e5cc79395098b9c33cfd3279be5f31bd00387d2d4db` | NSA Ghidra release `Ghidra_12.1.4_build` |
+| `ghidra_12.0.2_PUBLIC_20260129.zip` | 509,889,967 | `cf6e9de0b4d6e4ad2810bb4cd7fda59da726a98a454cd140694782aeaf2580e1` | NSA Ghidra release `Ghidra_12.0.2_build` (hosts the EmotionEngine R5900 extension; FASE 1) |
+| `ghidra_12.0.2_PUBLIC_20261004_ghidra-emotionengine-reloaded.zip` | 917,779 | `a9ce84b2408a50a2cb7a767e217971ed2c20a46773eb82b3ce8d3c921681bc01` | chaoticgd/ghidra-emotionengine-reloaded v2.1.38 — install into `ghidra_12.0.2_PUBLIC/Ghidra/Extensions/` |
 | `OpenJDK21U-jdk_x64_linux_hotspot_21.0.12.1_1.tar.gz` | 207,473,347 | `ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94` | adoptium/temurin21-binaries `jdk-21.0.12.1+1` |
 
 Both were fetched through the GitHub Actions relay (sandbox cannot reach

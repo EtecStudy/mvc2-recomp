@@ -1,0 +1,878 @@
+[
+ {
+  "num": -255,
+  "hex": "0xffffff01",
+  "sites": 1,
+  "name": "iCancelAlarm"
+ },
+ {
+  "num": -254,
+  "hex": "0xffffff02",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": -120,
+  "hex": "0xffffff88",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": -119,
+  "hex": "0xffffff89",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": -118,
+  "hex": "0xffffff8a",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": -113,
+  "hex": "0xffffff8f",
+  "sites": 1,
+  "name": "iGsPutIMR"
+ },
+ {
+  "num": -112,
+  "hex": "0xffffff90",
+  "sites": 1,
+  "name": "iGsGetIMR"
+ },
+ {
+  "num": -106,
+  "hex": "0xffffff96",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": -104,
+  "hex": "0xffffff98",
+  "sites": 1,
+  "name": "iFlushCache"
+ },
+ {
+  "num": -103,
+  "hex": "0xffffff99",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": -95,
+  "hex": "0xffffffa1",
+  "sites": 1,
+  "name": "DisableDmacHandler"
+ },
+ {
+  "num": -94,
+  "hex": "0xffffffa2",
+  "sites": 1,
+  "name": "EnableDmacHandler"
+ },
+ {
+  "num": -93,
+  "hex": "0xffffffa3",
+  "sites": 1,
+  "name": "DisableIntcHandler"
+ },
+ {
+  "num": -92,
+  "hex": "0xffffffa4",
+  "sites": 1,
+  "name": "EnableIntcHandler"
+ },
+ {
+  "num": -90,
+  "hex": "0xffffffa6",
+  "sites": 1,
+  "name": "iReferEventFlagStatus"
+ },
+ {
+  "num": -88,
+  "hex": "0xffffffa8",
+  "sites": 2,
+  "name": "iPollEventFlag"
+ },
+ {
+  "num": -87,
+  "hex": "0xffffffa9",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": -86,
+  "hex": "0xffffffaa",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": -85,
+  "hex": "0xffffffab",
+  "sites": 2,
+  "name": "iClearEventFlag"
+ },
+ {
+  "num": -84,
+  "hex": "0xffffffac",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": -83,
+  "hex": "0xffffffad",
+  "sites": 1,
+  "name": "iSetEventFlag"
+ },
+ {
+  "num": -72,
+  "hex": "0xffffffb8",
+  "sites": 1,
+  "name": "iReferSemaStatus"
+ },
+ {
+  "num": -70,
+  "hex": "0xffffffba",
+  "sites": 1,
+  "name": "iPollSema"
+ },
+ {
+  "num": -67,
+  "hex": "0xffffffbd",
+  "sites": 1,
+  "name": "iSignalSema"
+ },
+ {
+  "num": -58,
+  "hex": "0xffffffc6",
+  "sites": 1,
+  "name": "ResumeThread"
+ },
+ {
+  "num": -56,
+  "hex": "0xffffffc8",
+  "sites": 1,
+  "name": "SuspendThread"
+ },
+ {
+  "num": -54,
+  "hex": "0xffffffca",
+  "sites": 1,
+  "name": "iCancelWakeupThread"
+ },
+ {
+  "num": -52,
+  "hex": "0xffffffcc",
+  "sites": 1,
+  "name": "iWakeupThread"
+ },
+ {
+  "num": -49,
+  "hex": "0xffffffcf",
+  "sites": 1,
+  "name": "iReferThreadStatus"
+ },
+ {
+  "num": -47,
+  "hex": "0xffffffd1",
+  "sites": 2,
+  "name": "GetThreadId"
+ },
+ {
+  "num": -46,
+  "hex": "0xffffffd2",
+  "sites": 1,
+  "name": "iReleaseWaitThread"
+ },
+ {
+  "num": -44,
+  "hex": "0xffffffd4",
+  "sites": 1,
+  "name": "iRotateThreadReadyQueue"
+ },
+ {
+  "num": -42,
+  "hex": "0xffffffd6",
+  "sites": 1,
+  "name": "iChangeThreadPriority"
+ },
+ {
+  "num": -38,
+  "hex": "0xffffffda",
+  "sites": 1,
+  "name": "TerminateThread"
+ },
+ {
+  "num": -29,
+  "hex": "0xffffffe3",
+  "sites": 1,
+  "name": "iDisableDmac"
+ },
+ {
+  "num": -28,
+  "hex": "0xffffffe4",
+  "sites": 1,
+  "name": "iEnableDmac"
+ },
+ {
+  "num": -27,
+  "hex": "0xffffffe5",
+  "sites": 1,
+  "name": "iDisableIntc"
+ },
+ {
+  "num": -26,
+  "hex": "0xffffffe6",
+  "sites": 1,
+  "name": "iEnableIntc"
+ },
+ {
+  "num": -8,
+  "hex": "0xfffffff8",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 0,
+  "hex": "0x0",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 1,
+  "hex": "0x1",
+  "sites": 1,
+  "name": "ResetEE"
+ },
+ {
+  "num": 2,
+  "hex": "0x2",
+  "sites": 1,
+  "name": "GsSetCrt"
+ },
+ {
+  "num": 3,
+  "hex": "0x3",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 4,
+  "hex": "0x4",
+  "sites": 1,
+  "name": "ExitThread"
+ },
+ {
+  "num": 5,
+  "hex": "0x5",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 6,
+  "hex": "0x6",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 7,
+  "hex": "0x7",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 8,
+  "hex": "0x8",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 9,
+  "hex": "0x9",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 10,
+  "hex": "0xa",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 11,
+  "hex": "0xb",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 12,
+  "hex": "0xc",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 13,
+  "hex": "0xd",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 14,
+  "hex": "0xe",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 15,
+  "hex": "0xf",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 16,
+  "hex": "0x10",
+  "sites": 2,
+  "name": "AddIntcHandler"
+ },
+ {
+  "num": 17,
+  "hex": "0x11",
+  "sites": 1,
+  "name": "RemoveIntcHandler"
+ },
+ {
+  "num": 18,
+  "hex": "0x12",
+  "sites": 2,
+  "name": "AddDmacHandler"
+ },
+ {
+  "num": 19,
+  "hex": "0x13",
+  "sites": 1,
+  "name": "RemoveDmacHandler"
+ },
+ {
+  "num": 20,
+  "hex": "0x14",
+  "sites": 1,
+  "name": "EnableIntc"
+ },
+ {
+  "num": 21,
+  "hex": "0x15",
+  "sites": 1,
+  "name": "DisableIntc"
+ },
+ {
+  "num": 22,
+  "hex": "0x16",
+  "sites": 1,
+  "name": "EnableDmac"
+ },
+ {
+  "num": 23,
+  "hex": "0x17",
+  "sites": 1,
+  "name": "DisableDmac"
+ },
+ {
+  "num": 32,
+  "hex": "0x20",
+  "sites": 1,
+  "name": "CreateThread"
+ },
+ {
+  "num": 33,
+  "hex": "0x21",
+  "sites": 1,
+  "name": "DeleteThread"
+ },
+ {
+  "num": 34,
+  "hex": "0x22",
+  "sites": 1,
+  "name": "StartThread"
+ },
+ {
+  "num": 35,
+  "hex": "0x23",
+  "sites": 2,
+  "name": "ExitThread"
+ },
+ {
+  "num": 36,
+  "hex": "0x24",
+  "sites": 1,
+  "name": "ExitDeleteThread"
+ },
+ {
+  "num": 37,
+  "hex": "0x25",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 39,
+  "hex": "0x27",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 40,
+  "hex": "0x28",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 41,
+  "hex": "0x29",
+  "sites": 1,
+  "name": "ChangeThreadPriority"
+ },
+ {
+  "num": 43,
+  "hex": "0x2b",
+  "sites": 1,
+  "name": "RotateThreadReadyQueue"
+ },
+ {
+  "num": 45,
+  "hex": "0x2d",
+  "sites": 1,
+  "name": "ReleaseWaitThread"
+ },
+ {
+  "num": 47,
+  "hex": "0x2f",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 48,
+  "hex": "0x30",
+  "sites": 1,
+  "name": "ReferThreadStatus"
+ },
+ {
+  "num": 50,
+  "hex": "0x32",
+  "sites": 1,
+  "name": "SleepThread"
+ },
+ {
+  "num": 51,
+  "hex": "0x33",
+  "sites": 1,
+  "name": "WakeupThread"
+ },
+ {
+  "num": 53,
+  "hex": "0x35",
+  "sites": 1,
+  "name": "CancelWakeupThread"
+ },
+ {
+  "num": 55,
+  "hex": "0x37",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 57,
+  "hex": "0x39",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 59,
+  "hex": "0x3b",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 60,
+  "hex": "0x3c",
+  "sites": 2,
+  "name": "SetupThread"
+ },
+ {
+  "num": 61,
+  "hex": "0x3d",
+  "sites": 2,
+  "name": "SetupHeap"
+ },
+ {
+  "num": 62,
+  "hex": "0x3e",
+  "sites": 1,
+  "name": "EndOfHeap"
+ },
+ {
+  "num": 63,
+  "hex": "0x3f",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 64,
+  "hex": "0x40",
+  "sites": 1,
+  "name": "CreateSema"
+ },
+ {
+  "num": 65,
+  "hex": "0x41",
+  "sites": 1,
+  "name": "DeleteSema"
+ },
+ {
+  "num": 66,
+  "hex": "0x42",
+  "sites": 1,
+  "name": "SignalSema"
+ },
+ {
+  "num": 68,
+  "hex": "0x44",
+  "sites": 1,
+  "name": "WaitSema"
+ },
+ {
+  "num": 69,
+  "hex": "0x45",
+  "sites": 1,
+  "name": "PollSema"
+ },
+ {
+  "num": 71,
+  "hex": "0x47",
+  "sites": 1,
+  "name": "ReferSemaStatus"
+ },
+ {
+  "num": 73,
+  "hex": "0x49",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 74,
+  "hex": "0x4a",
+  "sites": 1,
+  "name": "SetOsdConfigParam"
+ },
+ {
+  "num": 75,
+  "hex": "0x4b",
+  "sites": 1,
+  "name": "GetOsdConfigParam"
+ },
+ {
+  "num": 76,
+  "hex": "0x4c",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 77,
+  "hex": "0x4d",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 78,
+  "hex": "0x4e",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 79,
+  "hex": "0x4f",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 80,
+  "hex": "0x50",
+  "sites": 1,
+  "name": "CreateEventFlag"
+ },
+ {
+  "num": 81,
+  "hex": "0x51",
+  "sites": 1,
+  "name": "DeleteEventFlag"
+ },
+ {
+  "num": 82,
+  "hex": "0x52",
+  "sites": 1,
+  "name": "SetEventFlag"
+ },
+ {
+  "num": 84,
+  "hex": "0x54",
+  "sites": 1,
+  "name": "ClearEventFlag"
+ },
+ {
+  "num": 85,
+  "hex": "0x55",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 86,
+  "hex": "0x56",
+  "sites": 2,
+  "name": "WaitEventFlag"
+ },
+ {
+  "num": 87,
+  "hex": "0x57",
+  "sites": 2,
+  "name": "PollEventFlag"
+ },
+ {
+  "num": 88,
+  "hex": "0x58",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 89,
+  "hex": "0x59",
+  "sites": 2,
+  "name": "ReferEventFlagStatus"
+ },
+ {
+  "num": 90,
+  "hex": "0x5a",
+  "sites": 5,
+  "name": "Copy"
+ },
+ {
+  "num": 91,
+  "hex": "0x5b",
+  "sites": 4,
+  "name": "GetEntryAddress"
+ },
+ {
+  "num": 92,
+  "hex": "0x5c",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 93,
+  "hex": "0x5d",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 94,
+  "hex": "0x5e",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 95,
+  "hex": "0x5f",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 96,
+  "hex": "0x60",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 97,
+  "hex": "0x61",
+  "sites": 1,
+  "name": "EnableCache"
+ },
+ {
+  "num": 98,
+  "hex": "0x62",
+  "sites": 1,
+  "name": "DisableCache"
+ },
+ {
+  "num": 99,
+  "hex": "0x63",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 100,
+  "hex": "0x64",
+  "sites": 1,
+  "name": "FlushCache"
+ },
+ {
+  "num": 102,
+  "hex": "0x66",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 107,
+  "hex": "0x6b",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 108,
+  "hex": "0x6c",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 109,
+  "hex": "0x6d",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 110,
+  "hex": "0x6e",
+  "sites": 1,
+  "name": "SetOsdConfigParam2"
+ },
+ {
+  "num": 111,
+  "hex": "0x6f",
+  "sites": 1,
+  "name": "GetOsdConfigParam2"
+ },
+ {
+  "num": 112,
+  "hex": "0x70",
+  "sites": 1,
+  "name": "GsGetIMR"
+ },
+ {
+  "num": 113,
+  "hex": "0x71",
+  "sites": 1,
+  "name": "GsPutIMR"
+ },
+ {
+  "num": 114,
+  "hex": "0x72",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 115,
+  "hex": "0x73",
+  "sites": 1,
+  "name": "SetVSyncFlag"
+ },
+ {
+  "num": 116,
+  "hex": "0x74",
+  "sites": 6,
+  "name": "SetSyscall"
+ },
+ {
+  "num": 117,
+  "hex": "0x75",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 118,
+  "hex": "0x76",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 119,
+  "hex": "0x77",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 120,
+  "hex": "0x78",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 121,
+  "hex": "0x79",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 122,
+  "hex": "0x7a",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 123,
+  "hex": "0x7b",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 124,
+  "hex": "0x7c",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 125,
+  "hex": "0x7d",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 126,
+  "hex": "0x7e",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 127,
+  "hex": "0x7f",
+  "sites": 1,
+  "name": "GetMemorySize"
+ },
+ {
+  "num": 128,
+  "hex": "0x80",
+  "sites": 1,
+  "name": "??"
+ },
+ {
+  "num": 130,
+  "hex": "0x82",
+  "sites": 1,
+  "name": "InitTLB"
+ },
+ {
+  "num": 131,
+  "hex": "0x83",
+  "sites": 1,
+  "name": "FindAddress"
+ },
+ {
+  "num": 252,
+  "hex": "0xfc",
+  "sites": 1,
+  "name": "SetAlarm"
+ },
+ {
+  "num": 253,
+  "hex": "0xfd",
+  "sites": 1,
+  "name": "??"
+ }
+]

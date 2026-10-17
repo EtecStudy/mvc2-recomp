@@ -70,26 +70,29 @@ absolute path still failed for the real reason).
 `scripts/env.sh` now only accepts `tools/jdk/jdk-21*` dirs containing
 `bin/javac` as JAVA_HOME.
 
-## P-005 — ps2xRuntime / ps2xTest don't build on this Linux box  ·  🔶 OPEN (FASE 1/3)
+## P-005 — ps2xRuntime / ps2xTest don't build on this Linux box  ·  🔶 OPEN, narrowed (FASE 3)
 
-*Symptom:* with `PS2X_BUILD_RUNTIME=ON`, Linux path requires
-`find_package(PkgConfig REQUIRED)` + `libavcodec/libavformat/libavutil/
-libswresample/libswscale`; `pkg-config` is absent and there are no ffmpeg
-dev libs; no apt mirrors reachable. With RUNTIME=OFF, `ps2xTest`'s
-`ps2_test_lib` fails on missing runtime/IOP headers
-(`ps2x/iop/iop_types.h`, `Stubs/Unimplemented.h`).
-*Impact today:* zero for the codegen pipeline (`ps2_recomp`, `ps2_analyzer`,
-gs_cache tests all build & pass via `ninja -k 0`). Blocks runtime work (FASE 3).
-*Planned approaches (in order):*
-1. Build `pkgconf/pkgconf` from GitHub source (meson is on PyPI) → provides
-   `pkg-config`.
-2. Build FFmpeg from `FFmpeg/FFmpeg` git (cloneable) with a minimal
-   `--disable-everything` config producing the 5 libs + `.pc` files; ~tens
-   of minutes on 2 cores, acceptable one-off.
-3. Or patch a local CMake option to make ffmpeg optional in ps2xRuntime
-   (video playback is irrelevant until late FASE 3) — smallest change,
-   decide in FASE 1.
-4. ps2xStudio (OpenGL) stays OFF; it is a GUI convenience, not pipeline.
+*Update (FASE 1, 2026-10-17):* FFmpeg is **not** a blocker — upstream has
+`PS2X_ENABLE_FFMPEG` (default depends on platform; with `=OFF` the MPEG
+stub falls back gracefully; only `Kernel/Stubs/MPEG.cpp` uses it).
+Configuring with `-DPS2X_ENABLE_FFMPEG=OFF` proceeds until **raylib**,
+whose CMake aborts on this box: GLFW needs X11 (`Could NOT find X11`),
+and `GLFW_BUILD_X11=OFF + GLFW_BUILD_WAYLAND=OFF` is explicitly fatal in
+raylib ("Cannot disable both Wayland and X11"). The sandbox has neither
+X11 nor Wayland dev files, and their upstreams (freedesktop GitLab) are
+unreachable; GitHub mirrors (X11Libre etc.) are unvetted and autotools-
+heavy. With RUNTIME=OFF, `ps2xTest`'s `ps2_test_lib` still fails on
+missing runtime/IOP headers (by design it tests the runtime).
+*What DOES work:* `ps2xIOP` alone (standalone project, zero deps) builds
+and passes 4/4 tests — the IOP half of the runtime is unblocked today.
+*Impact:* zero for FASE 1/2 (analysis + codegen + IOP). Blocks only the
+graphical runtime executable on *this* sandbox (FASE 3); the owner's
+Windows target is unaffected.
+*Options when FASE 3 starts:* (a) vendor minimal X11 from a GitHub mirror
+and build the libX11 chain; (b) patch raylib to a null/headless platform
+for probe builds (no window, GS still testable via readback); (c) build
+only on Windows. Decide then; do not sink FASE 1 time into it.
+ps2xStudio (OpenGL) stays OFF; GUI convenience, not pipeline.
 
 ## P-006 — No local binary copy of the game inside the sandbox yet  ·  🔶 OPEN (needs user decision)
 

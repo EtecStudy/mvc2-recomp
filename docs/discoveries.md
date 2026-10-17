@@ -1,5 +1,68 @@
 # Discoveries (dated, evidence-based — do not edit history, append)
 
+## 2026-10-17 — FASE 1 (scouting + pipeline preparation)
+
+### ELF structure (server-side scout v4 over the staged ELF; originals untouched)
+16. **Toolchain: Metrowerks CodeWarrior** — `.comment` reads
+    `MW MIPS C Compiler (2.4.1.01)` + `PlayStation2`. Not GCC/SN.
+17. **GP base = `0x00531af0`** (`.reginfo` ri_gp_value; gprmask 0xf7fffffe,
+    cprmask[1]=0xffffffff → all FPU regs live). Required input for correct
+    R5900 small-data/GP-relative analysis in Ghidra.
+18. Segment entropy (64 KiB blocks) is flat ≈5.2–5.7 (mixed code/data, no
+    packed/encrypted regions) except a near-zero hole (0.14) around
+    VA ≈0x00500000 and a dense 6.09 block right after (the string/name
+    tables at 0x0051xxxx–0x0052xxxx).
+19. 3,962 NUL-terminated ASCII strings (≥5 chars); 111 printf-style.
+    Name tables live around `0x00512700–0x00523xxx`: ADX audio
+    (`ADX_S000.ADX`…, `ADX_MENU/OPEN/WINS…`), per-character attack files
+    (`ATCK00.BIN`–`ATCK3A.BIN`), AFS mounts (`afs00.afs`–`afs03.afs`,
+    `0flist.dir`), font charmaps at `0x00527310/50`.
+20. **IRX modules actually referenced by path strings in the ELF** (stronger
+    evidence than disc presence; load order still unproven): boot cluster
+    `IOPRP255.IMG, SIO2MAN, PADMAN, USBD, USBMLOAD, USBKB`
+    (0x0051f680–0x0051f730); audio/mc cluster `CRI_ADXI, MCMAN, MCSERV,
+    LIBSD, MODHSYN, MODMIDI, MODMSIN, TSNDDRV` (0x00523180–0x00523340,
+    **TSNDDRV confirmed referenced** → PS2-14's "needs its own IRX" caveat
+    applies); network cluster `CXTMDM, OSTMDM_A, AVEPPP, AVE_WRAP, AVETCP,
+    USB_SRCH, USBDRV.CNF` (0x005236e0–0x005237c0). No `cdrom0:` string for
+    OMMODEM/ATAD/DEV9/HDD/PFS/MTAPMAN/ACC_COM (may load via IOPRP image or
+    non-string paths — unproven either way). Full list staged in Supabase
+    `bootstrap_transfer` kind=`scout_strings`.
+21. **EE syscall surface**: 169 stub sites / 146 distinct numbers; a dense
+    16-byte-stride stub table spans ≈`0x001039c0–0x00104250` (whole
+    libkernel linked in — presence of a stub ≠ used). Cross-referenced
+    against PS2Recomp's own `Dispatcher.cpp`: 85 of 146 numbers have
+    upstream names (`analysis/scout/syscall_map.md`). Hot non-table sites
+    cluster at `0x0010c2xx–0x0010d1xx`: #116 SetSyscall ×6, #90 ×5, #91 ×4
+    (names per upstream dispatcher), plus #16 AddIntcHandler, #18
+    AddDmacHandler. Consistent with PS2-10's SetSyscall(0x83→0x10CB10):
+    0x83=131 has its stub at `0x0010cb50`, in that neighbourhood.
+    ≈14,230 `addiu sp,sp,-n` sites (upper-bound function-frame hint only).
+22. CRI middleware fingerprints inside the EE image: error strings from
+    `htCiGetFileSize`, `dvCiOpen` (CRI file layer) and
+    `sceSifAllocIopHeap` inside `PS2RNA_Init` (network stack allocates IOP
+    heap at init — relevant to the IOP/SIF work in PS2-13).
+
+### Toolchain / upstream
+23. `ps2xIOP` builds **standalone** (no external deps) and its suite is
+    **4/4 green** on this machine (emulator/imports/compatibility/
+    import-version) — first PS2-13 acceptance item satisfied here.
+24. `ps2xRuntime` FFmpeg is already optional upstream
+    (`PS2X_ENABLE_FFMPEG=OFF` → stub MPEG frames; used only by
+    `Kernel/Stubs/MPEG.cpp`). The remaining Linux blocker is raylib:
+    its CMake hard-fails without X11 or Wayland (`Cannot disable both
+    Wayland and X11`), and this box has neither dev stack (P-005 updated).
+25. Ghidra **12.0.2** + EmotionEngine-Reloaded v2.1.38 installed side by
+    side with 12.1.4; language id **`r5900:LE:32:default`** verified by a
+    headless raw import (`.sla` compiled + cached). Extension must live in
+    `<install>/Ghidra/Extensions/`; `<install>/Extensions/Ghidra/` is only
+    the distribution shelf and does NOT register.
+26. `ExportPS2Functions.java` takes its two outputs via `askFile()` —
+    headless consumes them from script args in order:
+    `-postScript ExportPS2Functions.java <toml> <csv>`. It also emits
+    stub classifications (`STUB`/`UNTRACKED_STUB` selectors `name@0xADDR`)
+    and derives the C++ output dir as `<toml_dir>/output`.
+
 ## 2026-10-17 — FASE 0 bootstrap
 
 ### Environment
