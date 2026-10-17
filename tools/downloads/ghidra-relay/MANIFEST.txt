@@ -1,5 +1,0 @@
-source_url=https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_12.1.4_build/ghidra_12.1.4_PUBLIC_20260921.zip
-zip=ghidra_12.1.4_PUBLIC_20260921.zip
-zip_sha256=ddac49f903da9d5bac833e5cc79395098b9c33cfd3279be5f31bd00387d2d4db
-zip_bytes=569649598
-fetched_utc=2026-10-17T18:39:57Z
