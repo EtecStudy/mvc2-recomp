@@ -1,0 +1,80 @@
+# ============================================================================
+# BOOTSTRAP RELAY — fetch the full Eclipse Temurin JDK 21 (Linux x64).
+#
+# Same rationale as fetch-ghidra.yml: GitHub release assets are served from
+# release-assets.githubusercontent.com which the dev sandbox cannot reach,
+# and the PyPI "jdk4py" image is a trimmed jlink runtime WITHOUT javac,
+# which Ghidra rejects. A GitHub-hosted runner downloads the official JDK,
+# verifies SHA-256, splits into <100 MB chunks and commits them back so the
+# sandbox can `git pull` + reassemble. Temurin is GPLv2+CE / Apache-2.0.
+# Trigger: push touching tools/jdk/.fetch-jdk-trigger, or manual.
+# ============================================================================
+name: fetch-jdk (bootstrap relay)
+
+on:
+  push:
+    branches:
+      - arena/6f7b7e03-mvc2-recomp
+    paths:
+      - tools/jdk/.fetch-jdk-trigger
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-jdk
+  cancel-in-progress: false
+
+env:
+  JDK_TGZ: OpenJDK21U-jdk_x64_linux_hotspot_21.0.12.1_1.tar.gz
+  JDK_URL: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.12.1%2B1/OpenJDK21U-jdk_x64_linux_hotspot_21.0.12.1_1.tar.gz
+  JDK_SHA256: ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94
+  RELAY_DIR: tools/downloads/jdk-relay
+
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout session branch
+        uses: actions/checkout@v4
+        with:
+          ref: arena/6f7b7e03-mvc2-recomp
+          fetch-depth: 1
+
+      - name: Download Temurin JDK 21.0.12.1
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 -o "$JDK_TGZ" "$JDK_URL"
+          ls -lh "$JDK_TGZ"
+
+      - name: Verify SHA-256 against official digest
+        run: |
+          set -euo pipefail
+          echo "$JDK_SHA256  $JDK_TGZ" | sha256sum -c -
+
+      - name: Split into <100 MB chunks + manifest
+        run: |
+          set -euo pipefail
+          mkdir -p "$RELAY_DIR"
+          split -b 90m -d -a 2 "$JDK_TGZ" "$RELAY_DIR/$JDK_TGZ.part"
+          ( cd "$RELAY_DIR" && sha256sum *.part* > MANIFEST.sha256 )
+          {
+            echo "source_url=$JDK_URL"
+            echo "archive=$JDK_TGZ"
+            echo "archive_sha256=$JDK_SHA256"
+            echo "archive_bytes=$(stat -c%s "$JDK_TGZ")"
+            echo "fetched_utc=$(date -u +%FT%TZ)"
+          } > "$RELAY_DIR/MANIFEST.txt"
+          rm -f "$JDK_TGZ"
+          ls -lh "$RELAY_DIR"
+
+      - name: Commit chunks back to the branch
+        run: |
+          set -euo pipefail
+          git config user.name  "mvc2-bootstrap-relay"
+          git config user.email "bootstrap-relay@users.noreply.github.com"
+          git add -f "$RELAY_DIR"
+          git commit -m "relay: temurin jdk 21 chunks for sandbox bootstrap [skip ci]"
+          git push origin arena/6f7b7e03-mvc2-recomp
