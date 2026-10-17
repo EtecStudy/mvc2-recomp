@@ -1,0 +1,71 @@
+# ============================================================
+# mvc2-recomp .gitignore
+#
+# Policy (see docs/decisions.md D-001, D-002):
+# - Tool binaries / vendored tool trees are kept LOCALLY only.
+#   They are re-creatable with scripts/setup_tools.sh.
+# - Game data (copyrighted) NEVER enters git. It lives in game/
+#   on the owner's machine only.
+# - Build trees and generated bulk code stay out of git;
+#   only configs, scripts, docs and hand-written source are tracked.
+# ============================================================
+
+# --- Build trees / artifacts ---
+/builddir/
+/build/
+/out/
+*.o
+*.a
+*.so
+*.dll
+*.exe
+*.elf.bin
+
+# --- Tool downloads & extracted binaries (re-creatable) ---
+/tools/downloads/
+/tools/bin/_wheel_extract/
+/tools/bin/cmake_dist/
+/tools/bin/ninja
+/tools/bin/ninja.exe
+/tools/cmake/
+/tools/jdk/
+/tools/ghidra/ghidra_*/
+tools/rea/*/node_modules/
+tools/rea/*/.git/
+tools/ps2recomp/PS2Recomp/.git/
+tools/rea/*/.git
+tools/extra/*/.git/
+
+# Vendored tool source trees: tracked EXCEPT their own .git dirs
+# (kept locally; see tools/MANIFEST.md for exact SHAs)
+# NOTE: directories below are intentionally NOT ignored so the
+# source snapshots can be committed if size permits; heavy or
+# generated parts inside them are ignored individually:
+tools/rea/*/dist/
+tools/rea/*/.turbo/
+
+# --- Game data: NEVER COMMIT (copyrighted material) ---
+/game/supabase/
+/game/working/
+*.iso
+*.bin
+*.cue
+*.zip
+*.zip.0*
+*.7z
+*.rar
+
+# --- Analysis databases (large, re-creatable) ---
+/analysis/ghidra_projects/
+*.gpr
+*.rep/
+
+# --- Generated recompiled code (bulk; configs are tracked) ---
+/generated/cpp/
+
+# --- Misc ---
+node_modules/
+__pycache__/
+*.log
+.DS_Store
+/.cache/

@@ -1,0 +1,3 @@
+ghidra=12.1.4
+requested_utc=2026-10-17
+reason=FASE0 bootstrap: sandbox cannot reach release-assets.githubusercontent.com

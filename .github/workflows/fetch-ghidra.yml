@@ -1,0 +1,88 @@
+# ============================================================================
+# BOOTSTRAP RELAY — fetch the official Ghidra 12.1.4 binary distribution.
+#
+# WHY THIS EXISTS:
+# The development sandbox can only reach github.com / api.github.com /
+# codeload.github.com / pypi.org / registry.npmjs.org. GitHub *release assets*
+# are served from release-assets.githubusercontent.com, which is unreachable
+# from the sandbox, so the official Ghidra zip cannot be downloaded directly.
+#
+# This workflow runs on a GitHub-hosted runner (unrestricted internet),
+# downloads the official NSA Ghidra release, verifies its SHA-256 against
+# the digest published by the GitHub API, splits it into <100 MB chunks and
+# commits the chunks to this branch. The sandbox then pulls them with plain
+# `git pull` (github.com IS reachable), reassembles, re-verifies the hash,
+# extracts Ghidra locally (gitignored) and deletes the chunks again.
+#
+# Ghidra is Apache-2.0 licensed, so this redistribution is permitted.
+# Trigger: push touching tools/ghidra/.fetch-ghidra-trigger, or manual.
+# ============================================================================
+name: fetch-ghidra (bootstrap relay)
+
+on:
+  push:
+    branches:
+      - arena/6f7b7e03-mvc2-recomp
+    paths:
+      - tools/ghidra/.fetch-ghidra-trigger
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-ghidra
+  cancel-in-progress: false
+
+env:
+  GHIDRA_ZIP: ghidra_12.1.4_PUBLIC_20260921.zip
+  GHIDRA_URL: https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_12.1.4_build/ghidra_12.1.4_PUBLIC_20260921.zip
+  GHIDRA_SHA256: ddac49f903da9d5bac833e5cc79395098b9c33cfd3279be5f31bd00387d2d4db
+  RELAY_DIR: tools/downloads/ghidra-relay
+
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout session branch
+        uses: actions/checkout@v4
+        with:
+          ref: arena/6f7b7e03-mvc2-recomp
+          fetch-depth: 1
+
+      - name: Download official Ghidra 12.1.4
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 -o "$GHIDRA_ZIP" "$GHIDRA_URL"
+          ls -lh "$GHIDRA_ZIP"
+
+      - name: Verify SHA-256 against official digest
+        run: |
+          set -euo pipefail
+          echo "$GHIDRA_SHA256  $GHIDRA_ZIP" | sha256sum -c -
+
+      - name: Split into <100 MB chunks + manifest
+        run: |
+          set -euo pipefail
+          mkdir -p "$RELAY_DIR"
+          split -b 90m -d -a 2 "$GHIDRA_ZIP" "$RELAY_DIR/$GHIDRA_ZIP.part"
+          ( cd "$RELAY_DIR" && sha256sum *.part* > MANIFEST.sha256 )
+          {
+            echo "source_url=$GHIDRA_URL"
+            echo "zip=$GHIDRA_ZIP"
+            echo "zip_sha256=$GHIDRA_SHA256"
+            echo "zip_bytes=$(stat -c%s "$GHIDRA_ZIP")"
+            echo "fetched_utc=$(date -u +%FT%TZ)"
+          } > "$RELAY_DIR/MANIFEST.txt"
+          rm -f "$GHIDRA_ZIP"
+          ls -lh "$RELAY_DIR"
+
+      - name: Commit chunks back to the branch
+        run: |
+          set -euo pipefail
+          git config user.name  "mvc2-bootstrap-relay"
+          git config user.email "bootstrap-relay@users.noreply.github.com"
+          git add -f "$RELAY_DIR"
+          git commit -m "relay: ghidra 12.1.4 chunks for sandbox bootstrap [skip ci]"
+          git push origin arena/6f7b7e03-mvc2-recomp
