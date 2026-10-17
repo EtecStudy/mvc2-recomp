@@ -10,27 +10,35 @@
 # GitHub Actions relay for release binaries (Ghidra, JDK), whose chunks
 # are pulled with plain git. Versions/SHAs: tools/MANIFEST.md.
 # ============================================================================
-set -u
+set -euo pipefail
 cd "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ROOT="$PWD"
 echo "[setup] repo root: $ROOT"
-mkdir -p tools/downloads/wheels tools/bin builddir/logs
+mkdir -p tools/downloads/wheels tools/bin tools/jdk tools/ghidra builddir/logs
+bash scripts/restore_tool_archives.sh
 
 step() { echo; echo "########## $* ##########"; }
 have() { [ -e "$1" ]; }
 
 # ---------------------------------------------------------------------------
 step "1. Vendored source clones (git, github.com)"
-clone() { # url dest
-  if have "$2/.git"; then echo "  ok (exists) $2 @ $(git -C "$2" rev-parse --short HEAD)";
-  else echo "  cloning $1 -> $2"; git clone "$1" "$2" || echo "  FAIL clone $2"; fi
+clone() { # url dest pinned-sha
+  if have "$2/.git"; then
+    [ "$(git -C "$2" rev-parse HEAD)" = "$3" ] || {
+      echo "  ERROR: $2 HEAD differs from MANIFEST pin $3; preserving local tree" >&2; return 1;
+    }
+    echo "  ok (pinned) $2 @ $3"
+  else
+    git clone "$1" "$2"
+    git -C "$2" checkout --detach "$3"
+  fi
 }
-clone https://github.com/ran-j/PS2Recomp.git                     tools/ps2recomp/PS2Recomp
-clone https://github.com/morluto/rea.git                         tools/rea/rea
-clone https://github.com/cyberkaida/reverse-engineering-assistant.git tools/rea/reverse-engineering-assistant
-clone https://github.com/LaurieWired/GhidraMCP.git               tools/rea/GhidraMCP
-clone https://github.com/bethington/ghidra-mcp.git               tools/rea/ghidra-mcp
-clone https://github.com/hkmodd/ps2-recomp-Agent-SKILL.git       tools/extra/ps2-recomp-Agent-SKILL
+clone https://github.com/ran-j/PS2Recomp.git tools/ps2recomp/PS2Recomp eb8688b2fd191129f103a39543002c005b33409c
+clone https://github.com/morluto/rea.git tools/rea/rea 300905c11be1c25b98fda9e2b71dfa899fc2831c
+clone https://github.com/cyberkaida/reverse-engineering-assistant.git tools/rea/reverse-engineering-assistant a05a6b0a18649efd6d74ec8447bdadf8d468c365
+clone https://github.com/LaurieWired/GhidraMCP.git tools/rea/GhidraMCP 1e980252087b2479a21b9ca6d82d5829538651a7
+clone https://github.com/bethington/ghidra-mcp.git tools/rea/ghidra-mcp cf8b12db27eb139b28b90eaa3488306da910d759
+clone https://github.com/hkmodd/ps2-recomp-Agent-SKILL.git tools/extra/ps2-recomp-Agent-SKILL a1cafc23ac2d37d16ce979d3d4987a0bb6989dda
 
 # ---------------------------------------------------------------------------
 step "2. cmake + ninja from PyPI wheels (pypi.org)"
@@ -53,7 +61,7 @@ fi
 
 # ---------------------------------------------------------------------------
 step "3. Full JDK 21 (Eclipse Temurin)"
-JDK_DIR=$(ls -d tools/jdk/jdk-21* 2>/dev/null | head -1)
+JDK_DIR=$(ls -d tools/jdk/jdk-21* 2>/dev/null | head -1) || JDK_DIR=""
 if [ -n "$JDK_DIR" ] && [ -x "$JDK_DIR/bin/javac" ]; then
   echo "  ok: $("$JDK_DIR/bin/javac" --version) in $JDK_DIR"
 elif have tools/downloads/OpenJDK21U-jdk_x64_linux_hotspot_21.0.12.1_1.tar.gz; then
@@ -63,6 +71,7 @@ elif have tools/downloads/OpenJDK21U-jdk_x64_linux_hotspot_21.0.12.1_1.tar.gz; t
 elif have tools/downloads/jdk-relay/MANIFEST.sha256; then
   ( cd tools/downloads/jdk-relay && sha256sum -c MANIFEST.sha256 )
   cat tools/downloads/jdk-relay/*.part* > tools/downloads/OpenJDK21U-jdk_x64_linux_hotspot_21.0.12.1_1.tar.gz
+  ( cd tools/downloads && echo "ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94  OpenJDK21U-jdk_x64_linux_hotspot_21.0.12.1_1.tar.gz" | sha256sum -c - )
   tar xzf tools/downloads/OpenJDK21U-jdk_x64_linux_hotspot_21.0.12.1_1.tar.gz -C tools/jdk
   echo "  extracted from relay chunks"
 else
@@ -81,7 +90,7 @@ fi
 
 # ---------------------------------------------------------------------------
 step "4. Ghidra 12.1.4"
-GH_DIR=$(ls -d tools/ghidra/ghidra_*_PUBLIC 2>/dev/null | head -1)
+GH_DIR=tools/ghidra/ghidra_12.1.4_PUBLIC
 if [ -n "$GH_DIR" ] && [ -x "$GH_DIR/support/analyzeHeadless" ]; then
   echo "  ok: $GH_DIR"
 elif have tools/downloads/ghidra_12.1.4_PUBLIC_20260921.zip; then
@@ -135,7 +144,7 @@ relay_or_local() { # relay-name archive-name sha256 -> echoes archive path in to
     ( cd tools/downloads && echo "$sha  $arc" | sha256sum -c - >/dev/null ) && { echo "tools/downloads/$arc"; return 0; }
   fi
   if have "tools/downloads/relay/$name/MANIFEST.sha256"; then
-    ( cd "tools/downloads/relay/$name" && sha256sum -c MANIFEST.sha256 >/dev/null )
+    ( cd "tools/downloads/relay/$name" && sha256sum -c MANIFEST.sha256 >/dev/null ) || return 1
     cat "tools/downloads/relay/$name"/*.part* > "tools/downloads/$arc"
     ( cd tools/downloads && echo "$sha  $arc" | sha256sum -c - >/dev/null ) && { echo "tools/downloads/$arc"; return 0; }
   fi

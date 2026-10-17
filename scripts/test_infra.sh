@@ -29,24 +29,31 @@ javac --version >/dev/null 2>&1 && ok "javac ($(javac --version | awk '{print $2
 sect "Project skeleton (cmake + ctest)"
 if cmake -S . -B builddir/mvc2 -G Ninja -DCMAKE_BUILD_TYPE=Release >/dev/null 2>&1 \
    && cmake --build builddir/mvc2 >/dev/null 2>&1 \
-   && (cd builddir/mvc2 && ctest -Q >/dev/null 2>&1); then ok "mvc2_smoke_test builds and passes"; else bad "skeleton" "configure/build/ctest failed"; fi
+   && (cd builddir/mvc2 && ctest --no-tests=error -Q >/dev/null 2>&1); then ok "mvc2_smoke_test builds and passes"; else bad "skeleton" "configure/build/ctest failed"; fi
 
 sect "PS2Recomp"
 out=$(timeout 10 tools/ps2recomp/bin/ps2_recomp </dev/null 2>&1 | head -1)
 echo "$out" | grep -qi "static recompiler" && ok "ps2_recomp runs" || bad "ps2_recomp" "$out"
 out=$(timeout 10 tools/ps2recomp/bin/ps2_analyzer </dev/null 2>&1 | head -1)
 echo "$out" | grep -qi "ELF Analyzer" && ok "ps2_analyzer runs" || bad "ps2_analyzer" "$out"
-if [ -d builddir/ps2recomp/ps2xTest/gs_cache ]; then
-  (cd builddir/ps2recomp && timeout 240 ctest --test-dir ps2xTest/gs_cache -Q >/dev/null 2>&1) \
+GS_TEST_DIR=builddir/gs_cache
+[ -d "$GS_TEST_DIR" ] || GS_TEST_DIR=builddir/ps2recomp/ps2xTest/gs_cache
+if [ -d "$GS_TEST_DIR" ]; then
+  timeout 240 ctest --test-dir "$GS_TEST_DIR" --no-tests=error -Q >/dev/null 2>&1 \
     && ok "PS2Recomp gs_cache suite (45 tests)" || bad "gs_cache suite" "ctest failed"
-else bad "gs_cache suite" "builddir missing; run scripts/build_ps2recomp.sh"; fi
+else bad "gs_cache suite" "builddir missing; see docs/build.md"; fi
 [ -f tools/ps2recomp/PS2Recomp/ps2xRecomp/tools/ghidra/ExportPS2Functions.java ] \
   && ok "ExportPS2Functions.java present" || bad "ExportPS2Functions.java" "missing"
 
 sect "Ghidra 12.1.4"
 [ -x "$GHIDRA_INSTALL_DIR/support/analyzeHeadless" ] && ok "analyzeHeadless present" || bad "ghidra" "not extracted"
-"$GHIDRA_INSTALL_DIR/Ghidra/Features/Decompiler/os/linux_x86_64/decompile" </dev/null >/dev/null 2>&1 \
-  && ok "native decompiler binary starts" || ok "native decompiler binary present (exit!=0 on empty input is normal)"
+DECOMP="$GHIDRA_INSTALL_DIR/Ghidra/Features/Decompiler/os/linux_x86_64/decompile"
+if [ -x "$DECOMP" ]; then
+  decomp_exit=0
+  "$DECOMP" </dev/null >/dev/null 2>&1 || decomp_exit=$?
+  if [ "$decomp_exit" -le 1 ]; then ok "native decompiler starts (EOF exit $decomp_exit)";
+  else bad "native decompiler" "unexpected exit $decomp_exit"; fi
+else bad "native decompiler" "not executable/missing"; fi
 
 sect "Ghidra 12.0.2 + EmotionEngine (R5900)"
 GH12="$MVC2_ROOT/tools/ghidra/ghidra_12.0.2_PUBLIC"
@@ -54,9 +61,14 @@ GH12="$MVC2_ROOT/tools/ghidra/ghidra_12.0.2_PUBLIC"
 [ -f "$GH12/Ghidra/Extensions/ghidra-emotionengine-reloaded/data/languages/r5900.sla" ] \
   && ok "R5900 sleigh compiled (.sla cached)" || bad "r5900.sla" "extension not installed/compiled"
 
+bash scripts/test_ghidra_ee.sh >/dev/null 2>&1 \
+  && ok "synthetic R5900 import + TOML/CSV + C++" || bad "R5900 end-to-end" "see builddir/logs/ghidra-ee-probe.log"
+bash tests/test_target.sh >/dev/null 2>&1 \
+  && ok "active US target guards" || bad "target guard" "tests/test_target.sh failed"
+
 sect "ps2xIOP (upstream IOP subsystem)"
 if [ -d builddir/ps2xiop ]; then
-  (cd builddir/ps2xiop && timeout 120 ctest -Q >/dev/null 2>&1) \
+  (cd builddir/ps2xiop && timeout 120 ctest --no-tests=error -Q >/dev/null 2>&1) \
     && ok "ps2xIOP suite (4 tests)" || bad "ps2xIOP suite" "ctest failed"
 else bad "ps2xIOP" "builddir/ps2xiop missing (see docs/build.md)"; fi
 

@@ -1,7 +1,10 @@
 # tools/MANIFEST — pinned tool sources (offline rebuild reference)
 
-Everything below already exists locally under `tools/`. This manifest +
-`scripts/setup_tools.sh` recreate it all. Recorded 2026-10-17 (FASE 0).
+Tool installations are local-only and may need restoration after a snapshot.
+This manifest + `scripts/setup_tools.sh` recreate them;
+`scripts/restore_tool_archives.sh` restores public-tool chunks from known
+relay commits without changing branches or creating another workflow run.
+Recorded 2026-10-17 (FASE 0); primary tools restored/retested for USA FASE 1.
 
 ## Git clones (full history, github.com)
 

@@ -1,7 +1,7 @@
 # Architecture — mvc2-recomp
 
-Native PC port of **Marvel vs. Capcom 2: New Age of Heroes (PS2, NTSC-J,
-SLPM-622.27)** by **static recompilation** with PS2Recomp, plus a
+Native PC port of **Marvel vs. Capcom 2: New Age of Heroes (PS2, NTSC-U,
+SLUS-204.86)** by **static recompilation** with PS2Recomp, plus a
 hand-written runtime modelled on the God of War native port approach
 (AOT VU1, OpenGL GS, native IOP/IRX handling) — see the restart note in
 Supabase `build_targets` (2026-10-17) and decisions D-003/D-004.
@@ -12,7 +12,7 @@ Supabase `build_targets` (2026-10-17) and decisions D-003/D-004.
  game disc (Supabase storage, owner-only)
    │  ISO9660
    ▼
- SLPM_622.27 (EE ELF) ──► Ghidra 12.1.4 ──► ExportPS2Functions.java ──► config.toml + functions.csv
+ SLUS_204.86 (EE ELF) ──► Ghidra 12.0.2 + EmotionEngine ──► ExportPS2Functions.java ──► config.toml + functions.csv
    │                        ▲   │                                        │
    │                        │   └─ REA 6.5 (MCP/CLI, Ghidra provider) — assisted RE
    │                        │                                            ▼

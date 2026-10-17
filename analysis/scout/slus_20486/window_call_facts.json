@@ -1,0 +1,197 @@
+{
+  "serial": "SLUS_204.86",
+  "elf_sha256": "48ebf907d8149122ca9bd622ed11c290d5f93173078ea5bd570e1ac5566f13d7",
+  "tool": "Ghidra 12.0.2 + EmotionEngine 2.1.38, r5900:LE:32:default",
+  "scope": "Four SHA-gated windows, 992 bytes. Partial disassembly only; not full ELF analysis. Window-end branches may lack delay slots and remain undecoded.",
+  "decoded_instructions": 246,
+  "instructions_by_window": {
+    "boot": 32,
+    "usb_init": 71,
+    "audio_init": 80,
+    "network_init": 63
+  },
+  "lui_addiu_candidate_sites_confirmed_as_instructions": [
+    "0x003ec600",
+    "0x003ec618",
+    "0x003ec630",
+    "0x003ec648",
+    "0x003ec664",
+    "0x00419eec",
+    "0x00419f08",
+    "0x00419f20",
+    "0x00419f38",
+    "0x00419f50",
+    "0x0042016c",
+    "0x004201c8",
+    "0x004201cc"
+  ],
+  "direct_calls": [
+    {
+      "window": "usb_init",
+      "site": "0x003ec5c0",
+      "target": "0x0010c060"
+    },
+    {
+      "window": "usb_init",
+      "site": "0x003ec5d0",
+      "target": "0x00106628"
+    },
+    {
+      "window": "usb_init",
+      "site": "0x003ec5d8",
+      "target": "0x0010ac48"
+    },
+    {
+      "window": "usb_init",
+      "site": "0x003ec5e0",
+      "target": "0x0010f3c8"
+    },
+    {
+      "window": "usb_init",
+      "site": "0x003ec5e8",
+      "target": "0x0010f8a0"
+    },
+    {
+      "window": "usb_init",
+      "site": "0x003ec5f0",
+      "target": "0x00107e58"
+    },
+    {
+      "window": "usb_init",
+      "site": "0x003ec608",
+      "target": "0x003dcad0"
+    },
+    {
+      "window": "usb_init",
+      "site": "0x003ec620",
+      "target": "0x003dcad0"
+    },
+    {
+      "window": "usb_init",
+      "site": "0x003ec638",
+      "target": "0x003dcad0"
+    },
+    {
+      "window": "usb_init",
+      "site": "0x003ec650",
+      "target": "0x003dcad0"
+    },
+    {
+      "window": "usb_init",
+      "site": "0x003ec66c",
+      "target": "0x003dcad0"
+    },
+    {
+      "window": "usb_init",
+      "site": "0x003ec674",
+      "target": "0x00418c70"
+    },
+    {
+      "window": "usb_init",
+      "site": "0x003ec67c",
+      "target": "0x00419ee0"
+    },
+    {
+      "window": "usb_init",
+      "site": "0x003ec684",
+      "target": "0x00418b50"
+    },
+    {
+      "window": "usb_init",
+      "site": "0x003ec68c",
+      "target": "0x00100478"
+    },
+    {
+      "window": "usb_init",
+      "site": "0x003ec694",
+      "target": "0x001025a8"
+    },
+    {
+      "window": "usb_init",
+      "site": "0x003ec6a4",
+      "target": "0x00102580"
+    },
+    {
+      "window": "audio_init",
+      "site": "0x00419ef8",
+      "target": "0x003dcad0"
+    },
+    {
+      "window": "audio_init",
+      "site": "0x00419f10",
+      "target": "0x003dcad0"
+    },
+    {
+      "window": "audio_init",
+      "site": "0x00419f28",
+      "target": "0x003dcad0"
+    },
+    {
+      "window": "audio_init",
+      "site": "0x00419f40",
+      "target": "0x003dcad0"
+    },
+    {
+      "window": "audio_init",
+      "site": "0x00419f58",
+      "target": "0x003dcad0"
+    },
+    {
+      "window": "audio_init",
+      "site": "0x00419f78",
+      "target": "0x00422db0"
+    },
+    {
+      "window": "audio_init",
+      "site": "0x00419f84",
+      "target": "0x004238a0"
+    },
+    {
+      "window": "audio_init",
+      "site": "0x00419f94",
+      "target": "0x004232c0"
+    },
+    {
+      "window": "audio_init",
+      "site": "0x00419f9c",
+      "target": "0x00423750"
+    },
+    {
+      "window": "network_init",
+      "site": "0x00420158",
+      "target": "0x0041ffd0"
+    },
+    {
+      "window": "network_init",
+      "site": "0x004201a8",
+      "target": "0x003dcad0"
+    },
+    {
+      "window": "network_init",
+      "site": "0x004201b4",
+      "target": "0x0011ffa0"
+    },
+    {
+      "window": "network_init",
+      "site": "0x004201d0",
+      "target": "0x00420070"
+    },
+    {
+      "window": "network_init",
+      "site": "0x004201e0",
+      "target": "0x00100e68"
+    },
+    {
+      "window": "network_init",
+      "site": "0x004201f8",
+      "target": "0x00106c98"
+    }
+  ],
+  "common_module_call_target": "0x003dcad0",
+  "common_target_calls": 11,
+  "limitations": [
+    "Callee SDK name is not verified.",
+    "Calls and nearby path setup are static evidence only; no execution or global load order proven.",
+    "No authoritative function map, full-game TOML or game C++ generation completed."
+  ]
+}

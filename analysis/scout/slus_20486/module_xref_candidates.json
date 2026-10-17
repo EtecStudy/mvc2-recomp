@@ -1,0 +1,166 @@
+{
+  "serial": "SLUS_204.86",
+  "elf_sha256": "48ebf907d8149122ca9bd622ed11c290d5f93173078ea5bd570e1ac5566f13d7",
+  "source": "us_scout_xrefs",
+  "method": "Bounded straight-line LUI + ADDIU/ORI/load search (up to 16 instructions); abort on branch/unknown operation or base-register overwrite. Scan main RWX load image.",
+  "warning": "Candidates, not authoritative disassembly/function boundaries/load order. Review in Ghidra.",
+  "paths_found": 18,
+  "refs_found": 16,
+  "aligned_pointer_candidates": 0,
+  "unmatched_paths": [
+    {
+      "path": "cdrom0:",
+      "va": "0x004ba508"
+    },
+    {
+      "path": "cdrom0:\\MODULES\\IOPRP255.IMG;1",
+      "va": "0x004baa70"
+    }
+  ],
+  "refs": [
+    {
+      "path": "cdrom0:\\MODULES\\SIO2MAN.IRX;1",
+      "kind": "lui-address-candidate",
+      "lui": "0x003ec5f8",
+      "site": "0x003ec600",
+      "target": "0x004baa90",
+      "instruction": "0x2484aa90",
+      "distance": 2
+    },
+    {
+      "path": "cdrom0:\\MODULES\\PADMAN.IRX;1",
+      "kind": "lui-address-candidate",
+      "lui": "0x003ec610",
+      "site": "0x003ec618",
+      "target": "0x004baab0",
+      "instruction": "0x2484aab0",
+      "distance": 2
+    },
+    {
+      "path": "cdrom0:\\MODULES\\USBD.IRX;1",
+      "kind": "lui-address-candidate",
+      "lui": "0x003ec628",
+      "site": "0x003ec630",
+      "target": "0x004baad0",
+      "instruction": "0x2484aad0",
+      "distance": 2
+    },
+    {
+      "path": "cdrom0:\\MODULES\\USBMLOAD.IRX;1",
+      "kind": "lui-address-candidate",
+      "lui": "0x003ec640",
+      "site": "0x003ec648",
+      "target": "0x004baaf0",
+      "instruction": "0x2484aaf0",
+      "distance": 2
+    },
+    {
+      "path": "cdrom0:\\MODULES\\USBKB.IRX;1",
+      "kind": "lui-address-candidate",
+      "lui": "0x003ec65c",
+      "site": "0x003ec664",
+      "target": "0x004bab20",
+      "instruction": "0x2484ab20",
+      "distance": 2
+    },
+    {
+      "path": "cdrom0:\\MODULES\\CRI_ADXI.IRX;1",
+      "kind": "lui-address-candidate",
+      "lui": "0x00418b54",
+      "site": "0x00418b5c",
+      "target": "0x004bee60",
+      "instruction": "0x2484ee60",
+      "distance": 2
+    },
+    {
+      "path": "cdrom0:\\MODULES\\MCMAN.IRX;1",
+      "kind": "lui-address-candidate",
+      "lui": "0x00418c74",
+      "site": "0x00418c7c",
+      "target": "0x004bef00",
+      "instruction": "0x2484ef00",
+      "distance": 2
+    },
+    {
+      "path": "cdrom0:\\MODULES\\MCSERV.IRX;1",
+      "kind": "lui-address-candidate",
+      "lui": "0x00418c90",
+      "site": "0x00418c98",
+      "target": "0x004bef20",
+      "instruction": "0x2484ef20",
+      "distance": 2
+    },
+    {
+      "path": "cdrom0:\\MODULES\\LIBSD.IRX;1",
+      "kind": "lui-address-candidate",
+      "lui": "0x00419ee4",
+      "site": "0x00419eec",
+      "target": "0x004befa0",
+      "instruction": "0x2484efa0",
+      "distance": 2
+    },
+    {
+      "path": "cdrom0:\\MODULES\\MODHSYN.IRX;1",
+      "kind": "lui-address-candidate",
+      "lui": "0x00419f00",
+      "site": "0x00419f08",
+      "target": "0x004befc0",
+      "instruction": "0x2484efc0",
+      "distance": 2
+    },
+    {
+      "path": "cdrom0:\\MODULES\\MODMIDI.IRX;1",
+      "kind": "lui-address-candidate",
+      "lui": "0x00419f18",
+      "site": "0x00419f20",
+      "target": "0x004befe0",
+      "instruction": "0x2484efe0",
+      "distance": 2
+    },
+    {
+      "path": "cdrom0:\\MODULES\\MODMSIN.IRX;1",
+      "kind": "lui-address-candidate",
+      "lui": "0x00419f30",
+      "site": "0x00419f38",
+      "target": "0x004bf000",
+      "instruction": "0x2484f000",
+      "distance": 2
+    },
+    {
+      "path": "cdrom0:\\MODULES\\TSNDDRV.IRX;1",
+      "kind": "lui-address-candidate",
+      "lui": "0x00419f48",
+      "site": "0x00419f50",
+      "target": "0x004bf020",
+      "instruction": "0x2484f020",
+      "distance": 2
+    },
+    {
+      "path": "cdrom0:\\MODULES\\AVETCP.IRX;1",
+      "kind": "lui-address-candidate",
+      "lui": "0x00420164",
+      "site": "0x0042016c",
+      "target": "0x004bf0d0",
+      "instruction": "0x2484f0d0",
+      "distance": 2
+    },
+    {
+      "path": "cdrom0:\\MODULES\\USB_SRCH.IRX;1",
+      "kind": "lui-address-candidate",
+      "lui": "0x004201bc",
+      "site": "0x004201c8",
+      "target": "0x004bf0f0",
+      "instruction": "0x2484f0f0",
+      "distance": 3
+    },
+    {
+      "path": "cdrom0:\\MODULES\\USBDRV.CNF;1",
+      "kind": "lui-address-candidate",
+      "lui": "0x004201c0",
+      "site": "0x004201cc",
+      "target": "0x004bf110",
+      "instruction": "0x24c6f110",
+      "distance": 3
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "serial": "SLUS_204.86",
+  "source": "storage.objects read-only listing, bucket ps2recomp, 2026-10-17",
+  "warning": "Extracted uploaded objects only; not a verified complete ISO inventory. Only ELF content hash has been checked. No LBA or disc format inferred.",
+  "files": [
+    {
+      "path": "FONT8_8.TM2",
+      "size_bytes": 9472
+    },
+    {
+      "path": "MODULES/ACC_COM.IRX",
+      "size_bytes": 44969
+    },
+    {
+      "path": "MODULES/ATAD.IRX",
+      "size_bytes": 11925
+    },
+    {
+      "path": "MODULES/AVEPPP.IRX",
+      "size_bytes": 163647
+    },
+    {
+      "path": "MODULES/AVETCP.IRX",
+      "size_bytes": 194286
+    },
+    {
+      "path": "MODULES/AVE_WRAP.IRX",
+      "size_bytes": 23707
+    },
+    {
+      "path": "MODULES/CRI_ADXI.IRX",
+      "size_bytes": 253483
+    },
+    {
+      "path": "MODULES/CXTMDM.IRX",
+      "size_bytes": 74500
+    },
+    {
+      "path": "MODULES/DEV9.IRX",
+      "size_bytes": 12797
+    },
+    {
+      "path": "MODULES/DM12TEX.BIN",
+      "size_bytes": 66752
+    },
+    {
+      "path": "MODULES/HDD.IRX",
+      "size_bytes": 29941
+    },
+    {
+      "path": "MODULES/IOPRP255.IMG",
+      "size_bytes": 264449
+    },
+    {
+      "path": "MODULES/LIBSD.IRX",
+      "size_bytes": 28573
+    },
+    {
+      "path": "MODULES/MCMAN.IRX",
+      "size_bytes": 95517
+    },
+    {
+      "path": "MODULES/MCSERV.IRX",
+      "size_bytes": 7417
+    },
+    {
+      "path": "MODULES/MODHSYN.IRX",
+      "size_bytes": 59501
+    },
+    {
+      "path": "MODULES/MODMIDI.IRX",
+      "size_bytes": 21965
+    },
+    {
+      "path": "MODULES/MODMSIN.IRX",
+      "size_bytes": 1929
+    },
+    {
+      "path": "MODULES/MTAPMAN.IRX",
+      "size_bytes": 11013
+    },
+    {
+      "path": "MODULES/OMMODEM.IRX",
+      "size_bytes": 45467
+    },
+    {
+      "path": "MODULES/OSTMDM_A.IRX",
+      "size_bytes": 32337
+    },
+    {
+      "path": "MODULES/PADMAN.IRX",
+      "size_bytes": 44917
+    },
+    {
+      "path": "MODULES/PFS.IRX",
+      "size_bytes": 49129
+    },
+    {
+      "path": "MODULES/SIO2MAN.IRX",
+      "size_bytes": 6553
+    },
+    {
+      "path": "MODULES/TSNDDRV.IRX",
+      "size_bytes": 45103
+    },
+    {
+      "path": "MODULES/USBD.IRX",
+      "size_bytes": 34969
+    },
+    {
+      "path": "MODULES/USBDRV.CNF",
+      "size_bytes": 2213
+    },
+    {
+      "path": "MODULES/USBKB.IRX",
+      "size_bytes": 12853
+    },
+    {
+      "path": "MODULES/USBMLOAD.IRX",
+      "size_bytes": 14809
+    },
+    {
+      "path": "MODULES/USB_SRCH.IRX",
+      "size_bytes": 11739
+    },
+    {
+      "path": "PS2/0FLIST.DIR",
+      "size_bytes": 44
+    },
+    {
+      "path": "PS2/AFS01.AFS",
+      "size_bytes": 9263104
+    },
+    {
+      "path": "PS2/AFS03.AFS",
+      "size_bytes": 579584
+    },
+    {
+      "path": "SLUS_204.86",
+      "size_bytes": 3942320
+    },
+    {
+      "path": "SYSTEM.CNF",
+      "size_bytes": 54
+    }
+  ],
+  "file_count": 35,
+  "total_bytes": 15461038,
+  "excluded_zero_byte_placeholder": true,
+  "canonical_listing_sha256": "40c0f26a94ea4805ce7889126ab54e39e098951e6e5a4a402e2a7dc30bc6c373"
+}

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.21)
 # ============================================================================
-# mvc2-recomp — Marvel vs. Capcom 2 (PS2, SLPM-622.27) native PC port
+# mvc2-recomp — Marvel vs. Capcom 2 (PS2, SLUS-204.86) native PC port
 # via PS2Recomp static recompilation.
 #
 # FASE 0 skeleton. Real targets (recompiled game code + runtime) are added

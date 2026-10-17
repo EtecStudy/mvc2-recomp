@@ -1,15 +1,18 @@
 # mvc2-recomp
 
 Native PC port of **Marvel vs. Capcom 2: New Age of Heroes** (PlayStation 2,
-NTSC-J **SLPM-622.27**) via **static recompilation** with
+NTSC-U **SLUS-204.86**) via **static recompilation** with
 [PS2Recomp](https://github.com/ran-j/PS2Recomp), reverse-engineered with
 Ghidra 12.1.4 + [REA](https://github.com/morluto/rea).
 
-> Status: **FASE 0 (bootstrap) complete — 2026-10-17.** Full local toolchain
-> built and validated (22/22 infra checks): PS2Recomp compiled and passing
-> its test suite, Ghidra headless analysing, REA↔Ghidra integration proven,
-> game disc inventoried and boot ELF extracted/verified in Supabase.
-> Next: FASE 1 — Ghidra analysis of the ELF and first recompilation.
+> Active target: **SLUS_204.86 (USA)**, selected by the owner on 2026-10-17.
+> Extracted files are in Supabase bucket `ps2recomp`. The executable's
+> verified size is 3,942,320 bytes; SHA-256 is pinned in `scripts/target.sh`.
+> FASE 1: server-side ELF verified, four local windows decoded in Ghidra;
+> full-ELF analysis and US game C++ generation remain pending.
+> Earlier Japanese inventory/scouting is historical only, not US evidence.
+> Toolchain restored/revalidated; synthetic ELF → Ghidra → C++ probe passes.
+> USA findings: [`analysis/scout/slus_20486/`](analysis/scout/slus_20486/).
 
 ## Quick start (this sandbox)
 

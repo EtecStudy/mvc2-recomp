@@ -1,5 +1,8 @@
 # Discoveries (dated, evidence-based — do not edit history, append)
 
+> The findings below concern historical **SLPM_622.27**, not the active
+> SLUS_204.86, unless explicitly marked USA. See D-010.
+
 ## 2026-10-17 — FASE 1 (scouting + pipeline preparation)
 
 ### ELF structure (server-side scout v4 over the staged ELF; originals untouched)
@@ -133,3 +136,55 @@
     and `sb_publishable_*` bearers (`UNAUTHORIZED_INVALID_JWT_FORMAT`);
     the bootstrap bridge ran briefly with `verify_jwt=false` and was
     deleted immediately after use.
+
+## 2026-10-17 — USA target selected (Storage metadata only)
+
+Read-only Storage query returned 36 objects (including one zero-byte
+placeholder), totaling 15,461,038 bytes. Root executable is `SLUS_204.86`
+(3,942,320 bytes); `SYSTEM.CNF` is 54 bytes. `MODULES/` and two `PS2/`
+AFS files are present. No SLPM executable or split ZIP objects appeared
+in this current listing. This is not a full-disc completeness check and
+is not a content hash/ELF validation. Existing database JP records and
+staged chunks remain historical, separate from this upload.
+
+## 2026-10-17 — USA ELF verified and first partial local Ghidra pass
+
+27. **US identity verified:** `SYSTEM.CNF` boots `SLUS_204.86`; executable
+    is 3,942,320 B, SHA-256
+    `48ebf907d8149122ca9bd622ed11c290d5f93173078ea5bd570e1ac5566f13d7`.
+    Edge crypto and independent SQL reassembly of 41 `us_elf_chunk` rows
+    (indexes 0–40) agree. Japanese staging was not touched or reused.
+28. **US ELF:** entry `0x00100008`, GP `0x004C7270`, ELF32 LE MIPS ET_EXEC,
+    flags `0x20924000`; main PT_LOAD offset `0x80`, VA `0x100000`,
+    filesz 3,941,760 B, memsz 5,456,768 B. Empty symbol table. Metrowerks
+    MIPS C Compiler 2.4.1.01 / PlayStation2 confirmed from this US binary.
+29. **US module-reference scout:** 18 path strings, 16 LUI address
+    candidates, zero aligned pointer candidates. Does not prove runtime
+    module loading. Bounded scanner result is separate from JP work.
+30. **First real US bytes in local Ghidra:** four small windows totaling
+    992 B, individually SHA-gated after SQL hex transport. Ghidra 12.0.2
+    + EE decoded 246 instructions; 13 candidate sites decode as LUI/ADDIU
+    pairs. Found 11 direct calls to `0x003DCAD0` across USB/audio/network
+    windows. No SDK name, complete CFG, function map or runtime order
+    inferred. Window-end missing delay slots explain partial decoding.
+31. **US syscall candidates:** 481 raw aligned syscall-like words in the
+    mixed code/data image; 169 have nearby ADDIU v1 immediates, with 146
+    distinct signed values. These remain candidates, not discovered
+    functions or executed calls. Compact fact export matched an
+    independent server SHA-256 before local JSON construction.
+32. **Toolchain restored and exercised again:** pinned PS2Recomp sources,
+    REA 6.5.0 at its manifest commit, Temurin JDK, Ghidra 12.1.4 and
+    12.0.2+EE. GS 45/45, IOP 4/4; synthetic original ELF → Ghidra
+    ExportPS2Functions TOML/CSV → normalized low-memory config →
+    ps2_recomp C++ succeeded. This is not US game codegen. Final infra
+    suite passed **27/27**, including the synthetic C++ codegen substep.
+33. **Cleanup/tracking:** temporary `mvc2-us-stage` function deleted and
+    token removed; Edge Functions list confirmed empty. Separate US
+    target and 35 extracted-file inventory rows registered; ISO format,
+    LBA and full upload completeness remain unknown. The first staging
+    request failed on a nonexistent `(kind,idx)` unique constraint;
+    ordinary INSERT fixed staging. Originals were never written.
+
+The full US ELF is still not local. Full Ghidra export, analyzer cross-check
+and actual game C++ generation remain pending (P-006). All current US
+facts live under `analysis/scout/slus_20486/`; old root scout files are JP.

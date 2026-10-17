@@ -1,3 +1,10 @@
 # Infrastructure smoke tests (FASE 0). See docs/bootstrap.md §tests.
 add_executable(mvc2_smoke_test smoke_test.cpp)
 add_test(NAME infra.smoke COMMAND mvc2_smoke_test)
+
+if(UNIX)
+    add_test(NAME infra.active_target COMMAND bash "${CMAKE_CURRENT_SOURCE_DIR}/test_target.sh")
+endif()
+
+find_package(Python3 COMPONENTS Interpreter REQUIRED)
+add_test(NAME infra.recomp_config COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/test_normalize_config.py")

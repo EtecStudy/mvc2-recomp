@@ -94,29 +94,32 @@ for probe builds (no window, GS still testable via readback); (c) build
 only on Windows. Decide then; do not sink FASE 1 time into it.
 ps2xStudio (OpenGL) stays OFF; GUI convenience, not pipeline.
 
-## P-006 — No local binary copy of the game inside the sandbox yet  ·  🔶 OPEN (needs user decision)
+## P-006 — No verified local copy of the active US ELF · 🔶 OPEN
 
-*State:* ELF (4,378,928 B) is extracted, hash-verified and staged
-server-side as 45 base64 chunks in `bootstrap_transfer`
-(`kind='elf_chunk'`, idx 0–44, 96 KiB raw each). ISO inventory complete.
-*Blocker:* getting the bytes *into this workspace*:
-  - direct HTTPS download: blocked (P-002);
-  - through the agent's SQL tool results: 5.8 MB of base64 would have to
-    transit the conversation and be re-typed into files — unreliable and
-    wasteful (≈1.5M tokens); rejected;
-  - via GitHub (edge function → repo): rejected — violates the project's
-    own rule in `build_targets.notes` ("Game data never leaves the owner
-    machine") and would put copyrighted data on GitHub;
-  - via npm/PyPI publishing: rejected (abuse of third-party registries).
-*Clean options for the user (pick one, FASE 1 start):*
-  1. **Upload `SLPM_622.27` (4.3 MB) as a chat attachment** — lands in the
-     workspace; enough for all of FASE 1 (analysis + first recomp).
-     The full ISO (208 MB) only becomes necessary in FASE 3 (AFS assets).
-  2. Keep RE server-side longer: more edge-function probes return small
-     structured facts (strings, disasm windows) — workable for scouting,
-     not for the real Ghidra workflow.
-*Until then:* everything else in FASE 1 prep (configs, scripts, runtime
-build P-005) can proceed without the binary.
+The active target is **SLUS_204.86** (D-010). Its extracted Storage object
+is independently verified at 3,942,320 bytes, SHA-256
+`48ebf907d8149122ca9bd622ed11c290d5f93173078ea5bd570e1ac5566f13d7`.
+ELF headers and SYSTEM.CNF were read; 41 US chunks were staged and
+independently reassembled/hash-checked in SQL. JP chunks are not input.
+
+**Transfer tests:** direct sandbox HTTPS to Supabase failed TLS
+(`SSL_ERROR_SYSCALL`, curl 35). A local receiver worked locally, but
+external E2B ingress returned HTTP 403 “Missing traffic access token”;
+receiver stopped/token removed; zero parts received. No unapproved
+GitHub/npm/PyPI relay for game bytes is allowed. Do not repeat these
+failed routes without changed infrastructure.
+
+**New proven route for small windows:** controlled SQL hex results →
+ignored local files, checked with individual server-side SHA-256 hashes.
+Four US windows (992 bytes) reached Ghidra and yielded 246 decoded
+instructions. This is useful scouting, **not a full ELF transfer**.
+The full ELF is still absent, so full function export and game codegen
+remain blocked. The new hash gate is active (not pending verification).
+No user action is requested now; keep pursuing efficient authorized byte
+delivery while advancing scoped analysis. Never ask for the Japanese ELF.
+
+Toolchain restoration is complete for this snapshot, with tests rerun;
+see `docs/discoveries.md` and the US scout README for proof and limitations.
 
 ## P-007 — Snapshot size limits on vendored binaries  ·  🔶 MITIGATED
 

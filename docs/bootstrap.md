@@ -1,5 +1,9 @@
 # FASE 0 — Bootstrap report (2026-10-17)
 
+> Historical FASE 0 report for the former JP target. The only active game
+> target is now SLUS_204.86 (D-010); current findings are in
+> `analysis/scout/slus_20486/`. Do not reuse JP binary facts.
+
 Goal of this phase: **build and validate a complete local environment able to
 start the re-engineering of Marvel vs. Capcom 2 (PS2, SLPM-622.27) into a
 native PC port via PS2Recomp** — before touching the game itself.

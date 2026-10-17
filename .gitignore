@@ -69,3 +69,13 @@ __pycache__/
 *.log
 .DS_Store
 /.cache/
+
+# Local-only vendored sources/binaries (D-001); pin/rebuild via MANIFEST.
+/tools/ps2recomp/PS2Recomp/
+/tools/ps2recomp/bin/
+/tools/rea/rea/
+/tools/rea/reverse-engineering-assistant/
+/tools/rea/GhidraMCP/
+/tools/rea/ghidra-mcp/
+/tools/extra/ps2-recomp-Agent-SKILL/
+/tools/extra/ghidra-emotionengine-reloaded/

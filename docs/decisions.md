@@ -62,3 +62,11 @@ Storage content from this sandbox. Constraints: read-only on originals,
 stage only derived facts/chunks, `verify_jwt=false` only for minutes,
 **delete the function afterwards**, log everything in docs. (Executed
 exactly so in FASE 0.)
+
+## D-010 — SLUS_204.86 is the only active game target
+*2026-10-17, explicit owner instruction.* Stop SLPM_622.27 scouting and
+use the USA executable `SLUS_204.86` now present as an extracted Storage
+object. Preserve Japanese records solely as historical evidence; never
+reuse their SHA, addresses, GP, function maps or codegen for the US build.
+Verify the new executable independently before analysis. Original Storage
+objects remain read-only. This supersedes earlier target selection.

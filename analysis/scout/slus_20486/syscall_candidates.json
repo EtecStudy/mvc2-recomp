@@ -1,0 +1,687 @@
+{
+  "serial": "SLUS_204.86",
+  "elf_sha256": "48ebf907d8149122ca9bd622ed11c290d5f93173078ea5bd570e1ac5566f13d7",
+  "source": "us_scout_syscalls; aligned words in main PT_LOAD, nearest ADDIU v1,zero within three words",
+  "warning": "Candidates only. Mixed code/data RWX segment; no function map or execution proof. Negative signed values preserved. Raw scan had 481 hits; remaining 312 had no recovered v1 value.",
+  "compact_sha256": "885b063fffe5fa82a2af8a08a776d5f283f80eae56a6c0441f7a885f8eed8205",
+  "candidate_sites": 169,
+  "distinct_signed_numbers": 146,
+  "sites": [
+    {
+      "va": "0x00100178",
+      "number": 60
+    },
+    {
+      "va": "0x00100194",
+      "number": 61
+    },
+    {
+      "va": "0x001001d4",
+      "number": 35
+    },
+    {
+      "va": "0x00100584",
+      "number": 128
+    },
+    {
+      "va": "0x001039c4",
+      "number": 0
+    },
+    {
+      "va": "0x001039d4",
+      "number": 1
+    },
+    {
+      "va": "0x001039e4",
+      "number": 2
+    },
+    {
+      "va": "0x001039f4",
+      "number": 3
+    },
+    {
+      "va": "0x00103a04",
+      "number": 4
+    },
+    {
+      "va": "0x00103a14",
+      "number": 5
+    },
+    {
+      "va": "0x00103a24",
+      "number": 6
+    },
+    {
+      "va": "0x00103a34",
+      "number": 7
+    },
+    {
+      "va": "0x00103a44",
+      "number": 8
+    },
+    {
+      "va": "0x00103a54",
+      "number": 9
+    },
+    {
+      "va": "0x00103a64",
+      "number": 10
+    },
+    {
+      "va": "0x00103a74",
+      "number": 11
+    },
+    {
+      "va": "0x00103a84",
+      "number": 12
+    },
+    {
+      "va": "0x00103a94",
+      "number": 13
+    },
+    {
+      "va": "0x00103aa4",
+      "number": 14
+    },
+    {
+      "va": "0x00103ab4",
+      "number": 15
+    },
+    {
+      "va": "0x00103ac4",
+      "number": 16
+    },
+    {
+      "va": "0x00103ad4",
+      "number": 16
+    },
+    {
+      "va": "0x00103ae4",
+      "number": 17
+    },
+    {
+      "va": "0x00103af4",
+      "number": 18
+    },
+    {
+      "va": "0x00103b04",
+      "number": 18
+    },
+    {
+      "va": "0x00103b14",
+      "number": 19
+    },
+    {
+      "va": "0x00103b24",
+      "number": 20
+    },
+    {
+      "va": "0x00103b34",
+      "number": 21
+    },
+    {
+      "va": "0x00103b44",
+      "number": 22
+    },
+    {
+      "va": "0x00103b54",
+      "number": 23
+    },
+    {
+      "va": "0x00103b64",
+      "number": 252
+    },
+    {
+      "va": "0x00103b74",
+      "number": 253
+    },
+    {
+      "va": "0x00103b84",
+      "number": -26
+    },
+    {
+      "va": "0x00103b94",
+      "number": -27
+    },
+    {
+      "va": "0x00103ba4",
+      "number": -28
+    },
+    {
+      "va": "0x00103bb4",
+      "number": -29
+    },
+    {
+      "va": "0x00103bc4",
+      "number": -254
+    },
+    {
+      "va": "0x00103bd4",
+      "number": -255
+    },
+    {
+      "va": "0x00103be4",
+      "number": 32
+    },
+    {
+      "va": "0x00103bf4",
+      "number": 33
+    },
+    {
+      "va": "0x00103c04",
+      "number": 34
+    },
+    {
+      "va": "0x00103c14",
+      "number": 35
+    },
+    {
+      "va": "0x00103c24",
+      "number": 36
+    },
+    {
+      "va": "0x00103c34",
+      "number": 37
+    },
+    {
+      "va": "0x00103c44",
+      "number": -38
+    },
+    {
+      "va": "0x00103c54",
+      "number": 39
+    },
+    {
+      "va": "0x00103c64",
+      "number": 40
+    },
+    {
+      "va": "0x00103c74",
+      "number": 41
+    },
+    {
+      "va": "0x00103c84",
+      "number": -42
+    },
+    {
+      "va": "0x00103c94",
+      "number": 43
+    },
+    {
+      "va": "0x00103ca4",
+      "number": -44
+    },
+    {
+      "va": "0x00103cb4",
+      "number": 45
+    },
+    {
+      "va": "0x00103cc4",
+      "number": -46
+    },
+    {
+      "va": "0x00103cd4",
+      "number": 47
+    },
+    {
+      "va": "0x00103ce4",
+      "number": 48
+    },
+    {
+      "va": "0x00103cf4",
+      "number": -49
+    },
+    {
+      "va": "0x00103d04",
+      "number": 50
+    },
+    {
+      "va": "0x00103d14",
+      "number": 51
+    },
+    {
+      "va": "0x00103d24",
+      "number": -52
+    },
+    {
+      "va": "0x00103d34",
+      "number": 53
+    },
+    {
+      "va": "0x00103d44",
+      "number": -54
+    },
+    {
+      "va": "0x00103d54",
+      "number": 55
+    },
+    {
+      "va": "0x00103d64",
+      "number": -56
+    },
+    {
+      "va": "0x00103d74",
+      "number": 57
+    },
+    {
+      "va": "0x00103d84",
+      "number": -58
+    },
+    {
+      "va": "0x00103d94",
+      "number": 59
+    },
+    {
+      "va": "0x00103da4",
+      "number": 60
+    },
+    {
+      "va": "0x00103db4",
+      "number": 61
+    },
+    {
+      "va": "0x00103dc4",
+      "number": 62
+    },
+    {
+      "va": "0x00103dd4",
+      "number": 63
+    },
+    {
+      "va": "0x00103de4",
+      "number": 64
+    },
+    {
+      "va": "0x00103df4",
+      "number": 65
+    },
+    {
+      "va": "0x00103e04",
+      "number": 66
+    },
+    {
+      "va": "0x00103e14",
+      "number": -67
+    },
+    {
+      "va": "0x00103e24",
+      "number": 68
+    },
+    {
+      "va": "0x00103e34",
+      "number": 69
+    },
+    {
+      "va": "0x00103e44",
+      "number": -70
+    },
+    {
+      "va": "0x00103e54",
+      "number": 71
+    },
+    {
+      "va": "0x00103e64",
+      "number": -72
+    },
+    {
+      "va": "0x00103e74",
+      "number": 73
+    },
+    {
+      "va": "0x00103e84",
+      "number": 74
+    },
+    {
+      "va": "0x00103e94",
+      "number": 75
+    },
+    {
+      "va": "0x00103ea4",
+      "number": 76
+    },
+    {
+      "va": "0x00103eb4",
+      "number": 77
+    },
+    {
+      "va": "0x00103ec4",
+      "number": 78
+    },
+    {
+      "va": "0x00103ed4",
+      "number": 79
+    },
+    {
+      "va": "0x00103ee4",
+      "number": 80
+    },
+    {
+      "va": "0x00103ef4",
+      "number": 81
+    },
+    {
+      "va": "0x00103f04",
+      "number": 82
+    },
+    {
+      "va": "0x00103f14",
+      "number": -83
+    },
+    {
+      "va": "0x00103f24",
+      "number": 84
+    },
+    {
+      "va": "0x00103f34",
+      "number": -85
+    },
+    {
+      "va": "0x00103f44",
+      "number": 86
+    },
+    {
+      "va": "0x00103f54",
+      "number": 87
+    },
+    {
+      "va": "0x00103f64",
+      "number": -88
+    },
+    {
+      "va": "0x00103f74",
+      "number": 89
+    },
+    {
+      "va": "0x00103f84",
+      "number": -90
+    },
+    {
+      "va": "0x00103f94",
+      "number": 91
+    },
+    {
+      "va": "0x00103fa4",
+      "number": 92
+    },
+    {
+      "va": "0x00103fb4",
+      "number": -92
+    },
+    {
+      "va": "0x00103fc4",
+      "number": 93
+    },
+    {
+      "va": "0x00103fd4",
+      "number": -93
+    },
+    {
+      "va": "0x00103fe4",
+      "number": 94
+    },
+    {
+      "va": "0x00103ff4",
+      "number": -94
+    },
+    {
+      "va": "0x00104004",
+      "number": 95
+    },
+    {
+      "va": "0x00104014",
+      "number": -95
+    },
+    {
+      "va": "0x00104024",
+      "number": 96
+    },
+    {
+      "va": "0x00104034",
+      "number": 97
+    },
+    {
+      "va": "0x00104044",
+      "number": 98
+    },
+    {
+      "va": "0x00104054",
+      "number": 99
+    },
+    {
+      "va": "0x00104064",
+      "number": 100
+    },
+    {
+      "va": "0x00104074",
+      "number": 102
+    },
+    {
+      "va": "0x00104084",
+      "number": -103
+    },
+    {
+      "va": "0x00104094",
+      "number": -104
+    },
+    {
+      "va": "0x001040a4",
+      "number": -106
+    },
+    {
+      "va": "0x001040b4",
+      "number": 107
+    },
+    {
+      "va": "0x001040c4",
+      "number": 108
+    },
+    {
+      "va": "0x001040d4",
+      "number": 109
+    },
+    {
+      "va": "0x001040e4",
+      "number": 110
+    },
+    {
+      "va": "0x001040f4",
+      "number": 111
+    },
+    {
+      "va": "0x00104104",
+      "number": 112
+    },
+    {
+      "va": "0x00104114",
+      "number": -112
+    },
+    {
+      "va": "0x00104124",
+      "number": 113
+    },
+    {
+      "va": "0x00104134",
+      "number": -113
+    },
+    {
+      "va": "0x00104144",
+      "number": 114
+    },
+    {
+      "va": "0x00104154",
+      "number": 115
+    },
+    {
+      "va": "0x00104164",
+      "number": 116
+    },
+    {
+      "va": "0x00104174",
+      "number": 117
+    },
+    {
+      "va": "0x00104184",
+      "number": 118
+    },
+    {
+      "va": "0x00104194",
+      "number": -118
+    },
+    {
+      "va": "0x001041a4",
+      "number": 119
+    },
+    {
+      "va": "0x001041b4",
+      "number": -119
+    },
+    {
+      "va": "0x001041c4",
+      "number": 120
+    },
+    {
+      "va": "0x001041d4",
+      "number": -120
+    },
+    {
+      "va": "0x001041e4",
+      "number": 121
+    },
+    {
+      "va": "0x001041f4",
+      "number": 122
+    },
+    {
+      "va": "0x00104204",
+      "number": 123
+    },
+    {
+      "va": "0x00104214",
+      "number": 124
+    },
+    {
+      "va": "0x00104224",
+      "number": 125
+    },
+    {
+      "va": "0x00104234",
+      "number": 126
+    },
+    {
+      "va": "0x00104244",
+      "number": 127
+    },
+    {
+      "va": "0x00104254",
+      "number": 130
+    },
+    {
+      "va": "0x00104ca0",
+      "number": -47
+    },
+    {
+      "va": "0x00104db8",
+      "number": -47
+    },
+    {
+      "va": "0x0010c294",
+      "number": 90
+    },
+    {
+      "va": "0x0010c2dc",
+      "number": 91
+    },
+    {
+      "va": "0x0010c2ec",
+      "number": 116
+    },
+    {
+      "va": "0x0010c3c4",
+      "number": 85
+    },
+    {
+      "va": "0x0010c3d4",
+      "number": -85
+    },
+    {
+      "va": "0x0010c3e4",
+      "number": 86
+    },
+    {
+      "va": "0x0010c424",
+      "number": -86
+    },
+    {
+      "va": "0x0010c434",
+      "number": 87
+    },
+    {
+      "va": "0x0010c444",
+      "number": -87
+    },
+    {
+      "va": "0x0010c454",
+      "number": 88
+    },
+    {
+      "va": "0x0010c464",
+      "number": -88
+    },
+    {
+      "va": "0x0010c474",
+      "number": 89
+    },
+    {
+      "va": "0x0010c7d8",
+      "number": -84
+    },
+    {
+      "va": "0x0010cacc",
+      "number": 90
+    },
+    {
+      "va": "0x0010cb54",
+      "number": 131
+    },
+    {
+      "va": "0x0010cc9c",
+      "number": 116
+    },
+    {
+      "va": "0x0010ccec",
+      "number": 116
+    },
+    {
+      "va": "0x0010ccfc",
+      "number": 90
+    },
+    {
+      "va": "0x0010cd44",
+      "number": 91
+    },
+    {
+      "va": "0x0010ce6c",
+      "number": 90
+    },
+    {
+      "va": "0x0010ceac",
+      "number": 116
+    },
+    {
+      "va": "0x0010d10c",
+      "number": 116
+    },
+    {
+      "va": "0x0010d11c",
+      "number": 90
+    },
+    {
+      "va": "0x0010d164",
+      "number": 91
+    },
+    {
+      "va": "0x004398b0",
+      "number": -8
+    }
+  ]
+}

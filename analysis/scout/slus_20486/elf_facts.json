@@ -1,0 +1,49 @@
+{
+  "serial": "SLUS_204.86",
+  "source": "Supabase Storage ps2recomp/SLUS_204.86; Edge crypto + independent SQL chunk reassembly",
+  "verified_at": "2026-10-17T22:46:54.555Z",
+  "bytes": 3942320,
+  "sha256": "48ebf907d8149122ca9bd622ed11c290d5f93173078ea5bd570e1ac5566f13d7",
+  "elf_class": 32,
+  "endianness": "little",
+  "type": 2,
+  "machine": 8,
+  "entry": "0x00100008",
+  "flags": "0x20924000",
+  "gp": "0x004c7270",
+  "compiler": "MW MIPS C Compiler (2.4.1.01) / PlayStation2",
+  "stripped": true,
+  "program_headers": [
+    {
+      "type": 1,
+      "offset": "0x80",
+      "vaddr": "0x00100000",
+      "filesz": 3941760,
+      "memsz": 5456768,
+      "flags": 7,
+      "align": 128
+    },
+    {
+      "type": 1,
+      "offset": "0x003c2600",
+      "vaddr": "0x00634380",
+      "filesz": 0,
+      "memsz": 0,
+      "flags": 6,
+      "align": 16
+    }
+  ],
+  "system_cnf": {
+    "BOOT2": "cdrom0:\\SLUS_204.86;1",
+    "VER": "1.00",
+    "VMODE": "NTSC"
+  },
+  "server_staging": {
+    "kind": "us_elf_chunk",
+    "chunks": 41,
+    "first_idx": 0,
+    "last_idx": 40,
+    "independent_sql_sha256_matches": true
+  },
+  "local_elf_available": false
+}

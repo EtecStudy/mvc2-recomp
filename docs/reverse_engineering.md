@@ -1,11 +1,49 @@
 # Reverse engineering — targets, method, current knowledge
 
-## Primary target (verified in FASE 0, server-side; originals untouched)
+## Active target — SLUS_204.86 (USA)
+
+The owner selected this target on 2026-10-17 (D-010). Storage bucket
+`ps2recomp` now contains extracted US files. Only this target is active.
+Original files remain untouched; no Japanese addresses/maps are reused.
+
+| Verified US property | Value |
+|---|---|
+| Executable | `SLUS_204.86`, 3,942,320 bytes |
+| SHA-256 | `48ebf907d8149122ca9bd622ed11c290d5f93173078ea5bd570e1ac5566f13d7` |
+| Boot configuration | `BOOT2 = cdrom0:\SLUS_204.86;1`, VER 1.00, VMODE NTSC |
+| Format | ELF32 little-endian, ET_EXEC, EM_MIPS, flags `0x20924000` |
+| Entry / GP | `0x00100008` / `0x004C7270` |
+| Main PT_LOAD | offset `0x80`, VA `0x100000`, filesz 3,941,760, memsz 5,456,768, RWX |
+| Second PT_LOAD | VA `0x00634380`, filesz/memsz 0 |
+| Symbols / compiler | Empty symtab/strtab (stripped); Metrowerks MW MIPS C Compiler 2.4.1.01 / PlayStation2 |
+
+Crypto digest over the Storage bytes and independent SQL reassembly of
+41 `us_elf_chunk` records agree on size/hash. A separate US row and 35
+file rows were added to `build_targets`/`disc_files`; old JP rows remain
+historical. Only `AFS01.AFS` and `AFS03.AFS` were listed under `PS2/`;
+full-disc completeness/ISO format/LBAs have not been established.
+
+Small controlled SQL→hex→local transfers provided **992 verified bytes**
+from four US code windows. Ghidra decoded 246 instructions and confirmed
+13 LUI/ADDIU candidate sites plus 11 calls to a shared `0x003DCAD0` callee.
+This is **partial analysis**, not the authoritative full function map.
+Full facts and caveats: `analysis/scout/slus_20486/README.md`.
+
+Next: obtain the complete local working ELF (P-006), then run
+`scripts/fase1_analyze.sh game/working/SLUS_204.86 --recomp`.
+The pipeline gates size/SHA without bypass, uses Ghidra **12.0.2** +
+EmotionEngine `r5900:LE:32:default`, project `mvc2_slus20486`, configs
+`generated/config/slus_20486/`, and ignored C++ output
+`generated/cpp/slus_20486/`. REA stays on Ghidra 12.1.4.
+A synthetic original ELF passed this toolchain through C++ generation;
+no full-game TOML or game C++ has been generated yet.
+
+## Historical Japanese target (not active; FASE 0 evidence only)
 
 **Marvel vs. Capcom 2: New Age of Heroes (Japan)** — PS2 CD,
 serial **SLPM-622.27**, NTSC-J.
 
-* Stored at: Supabase storage bucket `ps2recomp`, split zip
+* Historical source (no longer in the current Storage listing): bucket `ps2recomp`, split zip
   `….zip.001–.007` (131,289,570 B total), single entry `.iso`
   (DEFLATE → 208,384,000 B).
 * ISO9660 PVD: system id `PLAYSTATION`, volume id `MARVEL_VS_CAPCOM2`,
@@ -48,7 +86,7 @@ serial **SLPM-622.27**, NTSC-J.
 | `ps2_analyzer` | PS2Recomp's own ELF analyzer w/ embedded SCE symbol DB — fallback/cross-check for TOML generation and syscall stub identification |
 | GhidraMCP / ghidra-mcp / REA-java | Vendored alternatives (GUI-oriented or Gradle-built); only if the REA path hits a wall |
 
-## Planned FASE 1 procedure
+## Historical Japanese FASE 1 plan (superseded; do not execute)
 
 1. Bring the ELF local (P-006) → `game/working/SLPM_622.27` (never in git).
 2. `analyzeHeadless analysis/ghidra_projects mvc2 -import SLPM_622.27`
