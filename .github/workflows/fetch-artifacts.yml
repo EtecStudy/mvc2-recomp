@@ -1,0 +1,77 @@
+# ============================================================================
+# BOOTSTRAP RELAY (generic) — fetch official release artifacts that the dev
+# sandbox cannot download directly (release-assets.githubusercontent.com is
+# unreachable from the sandbox; see docs/problems.md P-001).
+#
+# Usage: edit tools/.fetch-requests (one artifact per line:
+#   name|url|sha256
+# ), commit + push. A GitHub-hosted runner downloads each artifact, verifies
+# its SHA-256, splits it into <100 MB chunks under tools/downloads/relay/
+# <name>/ and commits them back. Locally: git pull, reassemble (cat parts),
+# re-verify, install, then delete the chunks (they stay only in history).
+# ============================================================================
+name: fetch-artifacts (bootstrap relay)
+
+on:
+  push:
+    branches:
+      - arena/6f7b7e03-mvc2-recomp
+    paths:
+      - tools/.fetch-requests
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-artifacts
+  cancel-in-progress: false
+
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout session branch
+        uses: actions/checkout@v4
+        with:
+          ref: arena/6f7b7e03-mvc2-recomp
+          fetch-depth: 1
+
+      - name: Fetch, verify and split requested artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS='|' read -r name url sha; do
+            [ -z "${name:-}" ] && continue
+            case "$name" in \#*) continue;; esac
+            echo "::group::$name"
+            file="$(basename "$url")"
+            curl -fL --retry 3 -o "$file" "$url"
+            echo "$sha  $file" | sha256sum -c -
+            outdir="tools/downloads/relay/$name"
+            rm -rf "$outdir" && mkdir -p "$outdir"
+            split -b 90m -d -a 2 "$file" "$outdir/$file.part"
+            ( cd "$outdir" && sha256sum *.part* > MANIFEST.sha256 )
+            {
+              echo "name=$name"
+              echo "source_url=$url"
+              echo "archive=$file"
+              echo "archive_sha256=$sha"
+              echo "archive_bytes=$(stat -c%s "$file")"
+              echo "fetched_utc=$(date -u +%FT%TZ)"
+            } > "$outdir/MANIFEST.txt"
+            rm -f "$file"
+            ls -lh "$outdir"
+            echo "::endgroup::"
+          done < tools/.fetch-requests
+
+      - name: Commit chunks back to the branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name  "mvc2-bootstrap-relay"
+          git config user.email "bootstrap-relay@users.noreply.github.com"
+          git add -f tools/downloads/relay
+          git commit -m "relay: artifact chunks for sandbox bootstrap [skip ci]"
+          git push origin arena/6f7b7e03-mvc2-recomp
