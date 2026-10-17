@@ -1,0 +1,9 @@
+{
+  "serial": "SLUS_204.86",
+  "elf_sha256": "48ebf907d8149122ca9bd622ed11c290d5f93173078ea5bd570e1ac5566f13d7",
+  "va": "0x003dcad0",
+  "bytes": 384,
+  "sha256": "2148fac5a46c90873b31a5bba51597582a252009c3294c661755fbcd36b34df0",
+  "source": "hash-gated SQL slice over us_elf_chunk reassembly; address returned from numeric va, not hand-labelled",
+  "scope": "Partial wrapper and following code, not complete ELF or callee name identification"
+}

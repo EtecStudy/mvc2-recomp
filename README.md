@@ -8,10 +8,11 @@ Ghidra 12.1.4 + [REA](https://github.com/morluto/rea).
 > Active target: **SLUS_204.86 (USA)**, selected by the owner on 2026-10-17.
 > Extracted files are in Supabase bucket `ps2recomp`. The executable's
 > verified size is 3,942,320 bytes; SHA-256 is pinned in `scripts/target.sh`.
-> FASE 1: server-side ELF verified, four local windows decoded in Ghidra;
+> FASE 1: server-side ELF verified, five local windows decoded in Ghidra;
 > full-ELF analysis and US game C++ generation remain pending.
 > Earlier Japanese inventory/scouting is historical only, not US evidence.
 > Toolchain restored/revalidated; synthetic ELF → Ghidra → C++ probe passes.
+> IOP: 41 images inventoried; AFS00/AFS02 missing from uploaded US list.
 > USA findings: [`analysis/scout/slus_20486/`](analysis/scout/slus_20486/).
 
 ## Quick start (this sandbox)

@@ -188,3 +188,39 @@ staged chunks remain historical, separate from this upload.
 The full US ELF is still not local. Full Ghidra export, analyzer cross-check
 and actual game C++ generation remain pending (P-006). All current US
 facts live under `analysis/scout/slus_20486/`; old root scout files are JP.
+
+
+## USA IOP / helper follow-up — 2026-10-17
+
+34. **26 external IRX + 15 ROM ELF** inspected read-only with rechecked
+    source SHA-256. ROMDIR contains 18 entries, no IOPBTCONF. The final
+    payload fits exactly; absent final 15-byte alignment padding does not
+    mean a truncated payload. 41 USA `elf_modules` rows registered with
+    runtime status `unknown`, no guessed load bases/instruction counts.
+35. **Corrected export parser:** raw zero may be a valid R_MIPS_32-relocated
+    export, not a terminator. V2 retained 16 such slots and rehashed all
+    sources, failures 0; v1 export lengths superseded. Regression covered
+    locally. 284 import tables / 41 export tables; canonical metadata hash
+    independently matched SQL (see `iop_modules_compact.txt`).
+36. **TSNDDRV:** 14 libraries / 61 ordinal imports. Static provider spans
+    available for 12 libraries; sysmem/intrman need core paths. No RPC SID,
+    actual boot order or sound execution was established.
+37. **Static dependency audit:** 226 tables have matching uploaded
+    major-version/ordinal spans, 58 need six core libraries. Upstream
+    resolver does not require requested minor <= provider minor. Required
+    secrman:6 (MCMAN) has no direct HLE case or uploaded export; dmacman
+    branch returns zero unconditionally. Risks documented, no fake stubs.
+38. **Shared helper:** SHA-gated 384-byte window at 003DCAD0 gave 96 decoded
+    instructions, including following code. Entry function inferred as
+    212 bytes with three calls. US diagnostic at 004BA4F0 independently
+    confirmed `Can't load module %s\n`. Partial decompiler suggests retry
+    wrapper; ABI/SDK identity remains unproven. Combined five-window
+    coverage is 1,376 bytes / 342 instructions, not full EE analysis.
+39. **Asset completeness is disproven against uploaded US filelist:**
+    0FLIST names afs00/01/02/03; global case-insensitive Storage lookup
+    found no AFS00/AFS02. Present AFS01/03 payload bounds fit (63/1 entries).
+    Missing sizes/hashes/cause unknown. No upload-limit explanation proven.
+40. **Follow-up validation/cleanup:** helper Ghidra run succeeded; parser
+    fixtures 4/4; fact consistency 5/5; infra **29/29**, project CTest
+    **5/5**, GS45/45, IOP4/4. Temporary IOP functions/tokens removed; Edge
+    listing empty. Full ELF/export/analyzer/game C++ still pending P-006.

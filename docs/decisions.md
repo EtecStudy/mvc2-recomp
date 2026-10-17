@@ -70,3 +70,12 @@ object. Preserve Japanese records solely as historical evidence; never
 reuse their SHA, addresses, GP, function maps or codegen for the US build.
 Verify the new executable independently before analysis. Original Storage
 objects remain read-only. This supersedes earlier target selection.
+
+
+## D-011 — Static dependency availability is not runtime compatibility
+*2026-10-17.* Use relocation-aware v2 IOP export spans and upstream's
+major-version rule for static audits. Do not label slot/case presence as
+successful module loading, DMA fidelity or audio. Keep load addresses,
+RPC SIDs, runtime status and SDK identities unknown until evidenced.
+No made-up zero-return stubs to hide missing imports. Asset absence is
+tracked separately from the full-EE transfer blocker.

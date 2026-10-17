@@ -23,11 +23,19 @@ file rows were added to `build_targets`/`disc_files`; old JP rows remain
 historical. Only `AFS01.AFS` and `AFS03.AFS` were listed under `PS2/`;
 full-disc completeness/ISO format/LBAs have not been established.
 
-Small controlled SQL→hex→local transfers provided **992 verified bytes**
-from four US code windows. Ghidra decoded 246 instructions and confirmed
-13 LUI/ADDIU candidate sites plus 11 calls to a shared `0x003DCAD0` callee.
-This is **partial analysis**, not the authoritative full function map.
-Full facts and caveats: `analysis/scout/slus_20486/README.md`.
+Small controlled SQL→hex→local transfers provided **1,376 verified bytes**
+from five US code windows. Ghidra decoded 342 instructions in total. The
+first four windows establish 13 LUI/ADDIU sites and 11 calls to
+`0x003DCAD0`; the fifth window provides a partial retry-wrapper
+interpretation corroborated by `Can't load module %s\n` (US address
+`0x004BA4F0`). ABI/SDK identity remains unproven.
+
+Read-only IOP inventory is now complete **as static metadata**: 26 external
+IRX + 15 ROM ELF modules, 284 import tables, 41 export tables (v2 corrected
+relocated-zero slots). Static audit flags `secrman:6` and the `dmacman`
+zero-return placeholder. `0FLIST.DIR` proves AFS00/AFS02 are referenced but
+not uploaded. Details: `analysis/scout/slus_20486/iop_report.md`.
+This is **partial analysis**, not an authoritative full EE function map.
 
 Next: obtain the complete local working ELF (P-006), then run
 `scripts/fase1_analyze.sh game/working/SLUS_204.86 --recomp`.

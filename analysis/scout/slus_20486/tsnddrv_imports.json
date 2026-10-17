@@ -1,0 +1,196 @@
+{
+  "serial": "SLUS_204.86",
+  "path": "MODULES/TSNDDRV.IRX",
+  "bytes": 45103,
+  "sha256": "f2e6aeb8972a1228d757a92a58ea83f3929c483b89ac6bf7e67570ba7bc0ddc1",
+  "elf_type": 65408,
+  "source": "us_iop_module_v2, SHA rechecked against Storage",
+  "imports": [
+    {
+      "library": "libsd",
+      "version": 261,
+      "ordinals": [
+        4,
+        5,
+        7,
+        9,
+        11,
+        17,
+        23,
+        26
+      ],
+      "uploaded_provider_candidates": [
+        "MODULES/LIBSD.IRX"
+      ]
+    },
+    {
+      "library": "modhsyn",
+      "version": 260,
+      "ordinals": [
+        4,
+        5,
+        6,
+        10,
+        13,
+        17,
+        18
+      ],
+      "uploaded_provider_candidates": [
+        "MODULES/MODHSYN.IRX"
+      ]
+    },
+    {
+      "library": "modmidi",
+      "version": 261,
+      "ordinals": [
+        4,
+        5,
+        6,
+        14,
+        15,
+        16,
+        17
+      ],
+      "uploaded_provider_candidates": [
+        "MODULES/MODMIDI.IRX"
+      ]
+    },
+    {
+      "library": "modmsin",
+      "version": 257,
+      "ordinals": [
+        4,
+        7,
+        9
+      ],
+      "uploaded_provider_candidates": [
+        "MODULES/MODMSIN.IRX"
+      ]
+    },
+    {
+      "library": "sysmem",
+      "version": 257,
+      "ordinals": [
+        4
+      ],
+      "uploaded_provider_candidates": []
+    },
+    {
+      "library": "intrman",
+      "version": 258,
+      "ordinals": [
+        6,
+        9,
+        17,
+        18
+      ],
+      "uploaded_provider_candidates": []
+    },
+    {
+      "library": "loadcore",
+      "version": 259,
+      "ordinals": [
+        5
+      ],
+      "uploaded_provider_candidates": [
+        "MODULES/IOPRP255.IMG#LOADCORE"
+      ]
+    },
+    {
+      "library": "sifcmd",
+      "version": 257,
+      "ordinals": [
+        14,
+        17,
+        19,
+        22,
+        23
+      ],
+      "uploaded_provider_candidates": [
+        "MODULES/IOPRP255.IMG#SIFCMD"
+      ]
+    },
+    {
+      "library": "stdio",
+      "version": 259,
+      "ordinals": [
+        4
+      ],
+      "uploaded_provider_candidates": [
+        "MODULES/IOPRP255.IMG#STDIO",
+        "MODULES/IOPRP255.IMG#SYSCLIB"
+      ]
+    },
+    {
+      "library": "thbase",
+      "version": 258,
+      "ordinals": [
+        4,
+        6,
+        8,
+        14,
+        20,
+        24,
+        26,
+        33
+      ],
+      "uploaded_provider_candidates": [
+        "MODULES/IOPRP255.IMG#THREADMAN"
+      ]
+    },
+    {
+      "library": "thevent",
+      "version": 257,
+      "ordinals": [
+        4,
+        6,
+        8,
+        10
+      ],
+      "uploaded_provider_candidates": [
+        "MODULES/IOPRP255.IMG#THREADMAN"
+      ]
+    },
+    {
+      "library": "thsemap",
+      "version": 257,
+      "ordinals": [
+        4,
+        6,
+        7,
+        8
+      ],
+      "uploaded_provider_candidates": [
+        "MODULES/IOPRP255.IMG#THREADMAN"
+      ]
+    },
+    {
+      "library": "thmsgbx",
+      "version": 257,
+      "ordinals": [
+        4,
+        6,
+        8,
+        9
+      ],
+      "uploaded_provider_candidates": [
+        "MODULES/IOPRP255.IMG#THREADMAN"
+      ]
+    },
+    {
+      "library": "timrman",
+      "version": 259,
+      "ordinals": [
+        4,
+        20,
+        22,
+        23
+      ],
+      "uploaded_provider_candidates": [
+        "MODULES/IOPRP255.IMG#TIMEMANI"
+      ]
+    }
+  ],
+  "export_tables": 0,
+  "warning": "Static ordinal/version/slot-span evidence only. No runtime loading, HLE semantic fidelity, SID or audio success proven."
+}

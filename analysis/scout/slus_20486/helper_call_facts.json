@@ -1,0 +1,31 @@
+{
+  "entry": "0x003dcad0",
+  "body_min": "0x003dcad0",
+  "body_max": "0x003dcba3",
+  "body_bytes": 212,
+  "serial": "SLUS_204.86",
+  "tool": "Ghidra 12.0.2 + EE 2.1.38",
+  "window_bytes": 384,
+  "decoded_instructions": 96,
+  "calls_in_inferred_function": [
+    {
+      "site": "0x003dcb30",
+      "target": "0x0010bb98"
+    },
+    {
+      "site": "0x003dcb54",
+      "target": "0x0010bb98"
+    },
+    {
+      "site": "0x003dcb7c",
+      "target": "0x0011eb60"
+    }
+  ],
+  "diagnostic_string": {
+    "va": "0x004ba4f0",
+    "text": "Can't load module %s\n",
+    "source": "separate SQL C-string extraction from hash-verified US ELF"
+  },
+  "interpretation": "Module-load retry wrapper candidate. Static decompiler suggests arg4=0 retries while result<0; finite arg4 retries stop on positive result, otherwise diagnostic. ABI/SDK name not verified.",
+  "full_elf_analysis_complete": false
+}

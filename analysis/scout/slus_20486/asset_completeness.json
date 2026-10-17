@@ -1,0 +1,43 @@
+{
+  "serial": "SLUS_204.86",
+  "source": "us_asset_headers_v1 and subsequent Storage name query",
+  "filelist": {
+    "path": "PS2/0FLIST.DIR",
+    "bytes": 44,
+    "sha256": "e5ab06ca649a5ed60e5bad2a3d071e41c98fa5ea8efd0178847cb6aab36ef9ea",
+    "listed_names": [
+      "afs00.afs",
+      "afs01.afs",
+      "afs02.afs",
+      "afs03.afs"
+    ]
+  },
+  "missing_listed_objects": [
+    "PS2/AFS00.AFS",
+    "PS2/AFS02.AFS"
+  ],
+  "uploaded_afs": [
+    {
+      "path": "PS2/AFS01.AFS",
+      "bytes": 9263104,
+      "sha256": "169a950b8d087c9976ec0a2aed9b265161ae2faff946585def8b2f882802b113",
+      "entries": 63,
+      "required_payload_end": 9257408,
+      "payload_extents_in_bounds": true
+    },
+    {
+      "path": "PS2/AFS03.AFS",
+      "bytes": 579584,
+      "sha256": "bd4c4a62320f1e456260d85c1d895e2070f62a07a3eb6be8215382f0e8e855c6",
+      "entries": 1,
+      "required_payload_end": 575832,
+      "payload_extents_in_bounds": true
+    }
+  ],
+  "limitations": [
+    "Missing files proved by the USA filelist plus case-insensitive Storage lookup, not Japanese layout.",
+    "Missing-file byte sizes and hashes are unknown. Upload failure or size-limit cause is not verified.",
+    "Uploaded AFS payload extents fit their objects; filename tables and semantic content were not fully validated.",
+    "Does not block ELF static analysis; does block claiming a complete asset set."
+  ]
+}

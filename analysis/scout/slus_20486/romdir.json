@@ -1,0 +1,121 @@
+{
+  "serial": "SLUS_204.86",
+  "path": "MODULES/IOPRP255.IMG",
+  "bytes": 264449,
+  "sha256": "e5762f40f94405d765b99b13b735a044197aab58b91b9f08d7832aa091eef40f",
+  "table_offset": 0,
+  "entries": [
+    {
+      "name": "RESET",
+      "file_offset": 0,
+      "bytes": 0,
+      "extinfo_bytes": 8
+    },
+    {
+      "name": "ROMDIR",
+      "file_offset": 0,
+      "bytes": 304,
+      "extinfo_bytes": 72
+    },
+    {
+      "name": "EXTINFO",
+      "file_offset": 304,
+      "bytes": 560,
+      "extinfo_bytes": 0
+    },
+    {
+      "name": "LOADCORE",
+      "file_offset": 864,
+      "bytes": 9849,
+      "extinfo_bytes": 32
+    },
+    {
+      "name": "SIFCMD",
+      "file_offset": 10720,
+      "bytes": 10105,
+      "extinfo_bytes": 40
+    },
+    {
+      "name": "SIFMAN",
+      "file_offset": 20832,
+      "bytes": 5969,
+      "extinfo_bytes": 32
+    },
+    {
+      "name": "THREADMAN",
+      "file_offset": 26816,
+      "bytes": 39421,
+      "extinfo_bytes": 40
+    },
+    {
+      "name": "IOMAN",
+      "file_offset": 66240,
+      "bytes": 12545,
+      "extinfo_bytes": 32
+    },
+    {
+      "name": "MODLOAD",
+      "file_offset": 78800,
+      "bytes": 17997,
+      "extinfo_bytes": 36
+    },
+    {
+      "name": "FILEIO",
+      "file_offset": 96800,
+      "bytes": 17829,
+      "extinfo_bytes": 32
+    },
+    {
+      "name": "CDVDMAN",
+      "file_offset": 114640,
+      "bytes": 72389,
+      "extinfo_bytes": 28
+    },
+    {
+      "name": "CDVDFSV",
+      "file_offset": 187040,
+      "bytes": 40661,
+      "extinfo_bytes": 32
+    },
+    {
+      "name": "LOADFILE",
+      "file_offset": 227712,
+      "bytes": 11617,
+      "extinfo_bytes": 32
+    },
+    {
+      "name": "TIMEMANI",
+      "file_offset": 239344,
+      "bytes": 6069,
+      "extinfo_bytes": 32
+    },
+    {
+      "name": "ROMDRV",
+      "file_offset": 245424,
+      "bytes": 3881,
+      "extinfo_bytes": 32
+    },
+    {
+      "name": "EESYNC",
+      "file_offset": 249312,
+      "bytes": 1545,
+      "extinfo_bytes": 24
+    },
+    {
+      "name": "SYSCLIB",
+      "file_offset": 250864,
+      "bytes": 10205,
+      "extinfo_bytes": 32
+    },
+    {
+      "name": "STDIO",
+      "file_offset": 261072,
+      "bytes": 3377,
+      "extinfo_bytes": 24
+    }
+  ],
+  "elf_members": 15,
+  "last_payload_end": 264449,
+  "used_aligned_bytes": 264464,
+  "warning": "Final alignment padding extends 15 bytes beyond EOF; all payload bytes fit exactly. No execution/ROM boot order inferred."
+}

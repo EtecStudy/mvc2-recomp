@@ -44,6 +44,24 @@ Do not use the historical `../syscall_map.*` as US address evidence.
   `885b063fffe5fa82a2af8a08a776d5f283f80eae56a6c0441f7a885f8eed8205`,
   independently obtained from SQL and matched locally. No JP sites copied.
 
+## IOP, helper and asset follow-up
+
+- `iop_report.md`: human-readable findings and scope/limitations.
+- `iop_modules_compact.txt`: 41 SHA-rechecked v2 module summaries;
+  `iop_dependency_report.json`: 226 provider-span matches / 58 core-only
+  tables, plus pinned-source audit (`secrman:6`, DMA placeholder).
+- `tsnddrv_imports.json`: all 61 requested ordinals / 14 libraries.
+- `romdir.json`: 18 entries and valid payload extents; 15 ELF members.
+- `asset_completeness.json`: AFS01/03 bounds and **AFS00/02 absence**
+  against the US filelist; missing sizes/hashes/cause remain unknown.
+- `helper_window.json`, `helper_call_facts.json`: fifth verified window
+  (384 bytes / 96 instructions), entry's inferred 212-byte function body
+  with three direct calls and corroborating module-load error string.
+  `bash scripts/fase1_helper.sh` reproduces the partial local analysis.
+
+Current combined window scope: **1,376 bytes / 342 decoded instructions**,
+not a full executable. Raw bytes/pseudocode remain in ignored directories.
+
 ## Provenance / cleanup
 
 Read-only Storage → temporary token-protected Edge Function
@@ -79,3 +97,12 @@ bash scripts/test_infra.sh
 hashes before importing. Ghidra additionally checks mapped bytes. Raw
 window disassembly stays in ignored `builddir/logs/`; only bounded facts
 are recorded here. The full-ELF pipeline still requires its own SHA gate.
+
+The subsequent IOP passes used temporary functions `mvc2-us-iop-inventory`
+and `mvc2-us-iop-v2` (requests 11/12). Both were deleted; tokens removed;
+Edge list rechecked empty. **v1 export counts are superseded** by v2,
+which preserves 16 relocated-zero export slots. Local full-scan Edge
+source is a reusable template, not the exact inline v2 reparse deployment
+body; the live reparse also used v1 original source identities to recheck
+all hashes. `build_iop_edge.py` assembles an ignored deployment copy;
+never commit that token-bearing output. No new deployment is needed now.

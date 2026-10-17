@@ -8,3 +8,8 @@ endif()
 
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
 add_test(NAME infra.recomp_config COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/test_normalize_config.py")
+
+find_program(NODE_EXECUTABLE node REQUIRED)
+add_test(NAME infra.iop_parser COMMAND "${NODE_EXECUTABLE}" --test "${CMAKE_CURRENT_SOURCE_DIR}/test_iop_inventory.mjs")
+
+add_test(NAME infra.iop_facts COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/test_iop_facts.py")

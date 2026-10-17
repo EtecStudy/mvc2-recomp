@@ -179,3 +179,12 @@ mvc2-recomp/
 2. Cross-check with `ps2_analyzer` output; seed `game_functions` in Supabase.
 3. First `ps2_recomp config.toml` run → generated C++ compiles (EE core first).
 4. In parallel: finish P-005 so `ps2xRuntime` links on Linux.
+
+
+### Follow-up validation (USA IOP / helper)
+
+2026-10-17: full infra now **29/29**; project CTest5/5 (including Node
+IRX/ROMDIR parser4/4 and Python offline fact checks5/5), GS45/45, IOP4/4.
+`bash scripts/fase1_helper.sh` separately passed Ghidra12.0.2+EE partial
+helper analysis. No full-game C++ generation was performed. Evidence:
+`analysis/scout/slus_20486/iop_report.md`; ignored logs in `builddir/logs/`.

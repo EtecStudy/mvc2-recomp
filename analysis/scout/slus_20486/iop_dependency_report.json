@@ -1,0 +1,242 @@
+{
+  "serial": "SLUS_204.86",
+  "source": "41 hash-rechecked us_iop_module_v2/us_rom_module_v2 records; query over imported ordinals and exported slot spans",
+  "canonical_module_facts_sha256": "7b89ca2f9885c781169629c312fab25483e5ed4b91f13eaaa984940fc983704a",
+  "images": 41,
+  "disk_irx": 26,
+  "rom_elf_members": 15,
+  "import_tables": 284,
+  "export_tables": 41,
+  "ordinal_span_available_tables": 226,
+  "no_uploaded_export_tables": 58,
+  "version_or_ordinal_gap_tables": 0,
+  "provider_rule": "Any supplied library with matching major version and enough non-null-after-relocation slots for all demanded ordinals. Minor version not required by pinned upstream resolver. Does not select load order.",
+  "unprovided_libraries": [
+    "dmacman",
+    "heaplib",
+    "intrman",
+    "secrman",
+    "sysmem",
+    "vblank"
+  ],
+  "core_dispatch_source_pin": "eb8688b2fd191129f103a39543002c005b33409c",
+  "core_dispatch_audit": [
+    {
+      "library": "dmacman",
+      "required_ordinals": [
+        4,
+        5,
+        6,
+        8,
+        9,
+        14,
+        15,
+        16,
+        17,
+        28,
+        32,
+        33,
+        34,
+        35
+      ],
+      "source": "ps2xIOP/src/emulator/iop_emulator.cpp",
+      "status": "unconditional zero-return branch; not hardware fidelity",
+      "case_matched_ordinals": [],
+      "missing_case_ordinals": [],
+      "required_by": [
+        "MODULES/DEV9.IRX",
+        "MODULES/IOPRP255.IMG#CDVDMAN",
+        "MODULES/SIO2MAN.IRX"
+      ]
+    },
+    {
+      "library": "heaplib",
+      "required_ordinals": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source": "ps2xIOP/src/emulator/imports/iop_heaplib.cpp",
+      "status": "static switch-case coverage only; runtime behavior not validated",
+      "case_matched_ordinals": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "missing_case_ordinals": [],
+      "required_by": [
+        "MODULES/IOPRP255.IMG#THREADMAN"
+      ]
+    },
+    {
+      "library": "intrman",
+      "required_ordinals": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        14,
+        17,
+        18,
+        23,
+        28,
+        30
+      ],
+      "source": "ps2xIOP/src/emulator/imports/iop_intrman.cpp",
+      "status": "static switch-case coverage only; runtime behavior not validated",
+      "case_matched_ordinals": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        14,
+        17,
+        18,
+        23,
+        28,
+        30
+      ],
+      "missing_case_ordinals": [],
+      "required_by": [
+        "MODULES/AVETCP.IRX",
+        "MODULES/CRI_ADXI.IRX",
+        "MODULES/CXTMDM.IRX",
+        "MODULES/DEV9.IRX",
+        "MODULES/HDD.IRX",
+        "MODULES/IOPRP255.IMG#CDVDFSV",
+        "MODULES/IOPRP255.IMG#CDVDMAN",
+        "MODULES/IOPRP255.IMG#FILEIO",
+        "MODULES/IOPRP255.IMG#IOMAN",
+        "MODULES/IOPRP255.IMG#LOADFILE",
+        "MODULES/IOPRP255.IMG#MODLOAD",
+        "MODULES/IOPRP255.IMG#ROMDRV",
+        "MODULES/IOPRP255.IMG#SIFCMD",
+        "MODULES/IOPRP255.IMG#SIFMAN",
+        "MODULES/IOPRP255.IMG#THREADMAN",
+        "MODULES/IOPRP255.IMG#TIMEMANI",
+        "MODULES/LIBSD.IRX",
+        "MODULES/MCMAN.IRX",
+        "MODULES/MCSERV.IRX",
+        "MODULES/MODHSYN.IRX",
+        "MODULES/MODMIDI.IRX",
+        "MODULES/MODMSIN.IRX",
+        "MODULES/OMMODEM.IRX",
+        "MODULES/OSTMDM_A.IRX",
+        "MODULES/PADMAN.IRX",
+        "MODULES/PFS.IRX",
+        "MODULES/SIO2MAN.IRX",
+        "MODULES/TSNDDRV.IRX",
+        "MODULES/USBD.IRX",
+        "MODULES/USBKB.IRX",
+        "MODULES/USBMLOAD.IRX",
+        "MODULES/USB_SRCH.IRX"
+      ]
+    },
+    {
+      "library": "secrman",
+      "required_ordinals": [
+        4,
+        5,
+        6
+      ],
+      "source": "ps2xIOP/src/emulator/iop_emulator.cpp",
+      "status": "static switch-case coverage only; runtime behavior not validated",
+      "case_matched_ordinals": [
+        4,
+        5
+      ],
+      "missing_case_ordinals": [
+        6
+      ],
+      "required_by": [
+        "MODULES/MCMAN.IRX"
+      ]
+    },
+    {
+      "library": "sysmem",
+      "required_ordinals": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        14
+      ],
+      "source": "ps2xIOP/src/emulator/imports/iop_sysmem.cpp",
+      "status": "static switch-case coverage only; runtime behavior not validated",
+      "case_matched_ordinals": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        14
+      ],
+      "missing_case_ordinals": [],
+      "required_by": [
+        "MODULES/CXTMDM.IRX",
+        "MODULES/HDD.IRX",
+        "MODULES/IOPRP255.IMG#CDVDFSV",
+        "MODULES/IOPRP255.IMG#CDVDMAN",
+        "MODULES/IOPRP255.IMG#EESYNC",
+        "MODULES/IOPRP255.IMG#FILEIO",
+        "MODULES/IOPRP255.IMG#IOMAN",
+        "MODULES/IOPRP255.IMG#LOADCORE",
+        "MODULES/IOPRP255.IMG#LOADFILE",
+        "MODULES/IOPRP255.IMG#MODLOAD",
+        "MODULES/IOPRP255.IMG#THREADMAN",
+        "MODULES/OMMODEM.IRX",
+        "MODULES/OSTMDM_A.IRX",
+        "MODULES/PADMAN.IRX",
+        "MODULES/PFS.IRX",
+        "MODULES/TSNDDRV.IRX",
+        "MODULES/USBD.IRX",
+        "MODULES/USBKB.IRX",
+        "MODULES/USBMLOAD.IRX"
+      ]
+    },
+    {
+      "library": "vblank",
+      "required_ordinals": [
+        5,
+        8,
+        9
+      ],
+      "source": "ps2xIOP/src/emulator/imports/iop_vblank.cpp",
+      "status": "static switch-case coverage only; runtime behavior not validated",
+      "case_matched_ordinals": [
+        5,
+        8,
+        9
+      ],
+      "missing_case_ordinals": [],
+      "required_by": [
+        "MODULES/CRI_ADXI.IRX",
+        "MODULES/PADMAN.IRX"
+      ]
+    }
+  ],
+  "important_findings": [
+    "MCMAN imports secrman ordinal 6; the pinned direct HLE branch handles only 4 and 5 and the uploaded images do not export secrman. Potential unresolved import, not proof of execution or crash.",
+    "dmacman dispatch returns zero unconditionally; this is a placeholder, not evidence of correct DMA behavior.",
+    "TSNDDRV requires 61 ordinals across 14 libraries; supplied provider spans exist for 12, while sysmem/intrman rely on core paths. Other dispatch/guest initialization still needs runtime testing.",
+    "The parser preserved 16 relocated-zero export slots. v1 export counts were wrong; v2 rechecked every source SHA before replacement facts."
+  ],
+  "limitations": [
+    "Only static provider/ordinal-slot-span availability, not successful linking, relocations, library initialization, physical memory load or audio execution.",
+    "Core-library export absence in these uploads does not imply that the library is missing from real PS2 ROM.",
+    "No return-zero stub or runtime workaround was added."
+  ]
+}

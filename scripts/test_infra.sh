@@ -66,6 +66,12 @@ bash scripts/test_ghidra_ee.sh >/dev/null 2>&1 \
 bash tests/test_target.sh >/dev/null 2>&1 \
   && ok "active US target guards" || bad "target guard" "tests/test_target.sh failed"
 
+sect "USA IOP metadata"
+node --test tests/test_iop_inventory.mjs >/dev/null 2>&1 \
+  && ok "IRX/ROMDIR parser fixtures (including relocated-zero export)" || bad "IOP parser" "fixture test failed"
+python3 tests/test_iop_facts.py >/dev/null 2>&1 \
+  && ok "USA module/assets facts consistency" || bad "IOP facts" "offline fact test failed"
+
 sect "ps2xIOP (upstream IOP subsystem)"
 if [ -d builddir/ps2xiop ]; then
   (cd builddir/ps2xiop && timeout 120 ctest --no-tests=error -Q >/dev/null 2>&1) \

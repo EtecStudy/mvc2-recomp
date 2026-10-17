@@ -111,8 +111,8 @@ failed routes without changed infrastructure.
 
 **New proven route for small windows:** controlled SQL hex results →
 ignored local files, checked with individual server-side SHA-256 hashes.
-Four US windows (992 bytes) reached Ghidra and yielded 246 decoded
-instructions. This is useful scouting, **not a full ELF transfer**.
+Initially four US windows (992 bytes) yielded 246 decoded instructions;
+the fifth helper window adds 384 bytes / 96 instructions (total 1,376/342). This is useful scouting, **not a full ELF transfer**.
 The full ELF is still absent, so full function export and game codegen
 remain blocked. The new hash gate is active (not pending verification).
 No user action is requested now; keep pursuing efficient authorized byte
@@ -132,3 +132,33 @@ payloads are re-creatable non-interactively by `scripts/setup_tools.sh`
 from local archives in `tools/downloads/` (kept deliberately) or, worst
 case, via the Actions relay. Verified archives + manifests:
 `tools/downloads/manifests/`.
+
+
+## P-008 — Uploaded US asset set lacks AFS00 / AFS02 · OPEN, runtime blocker
+
+US `PS2/0FLIST.DIR` lists all four AFS names; a case-insensitive lookup
+across current Storage objects found no AFS00/02. Unknown expected sizes,
+hashes and reason for absence; no upload-limit cause established. AFS01
+and AFS03 payload extents fit their objects but do not establish complete
+assets. Missing files do not block full-ELF static analysis/codegen.
+Acceptance: legitimate owner assets received through an authorized path,
+content hashes/lengths recorded, filelist and payload checks rerun. Never
+invent substitute game content. See USA `asset_completeness.json`.
+
+## P-009 — IOP core dispatch risks · OPEN, static findings only
+
+Pinned upstream handles only secrman ordinals4/5; MCMAN imports6 and no
+uploaded image exports secrman. dmacman handler unconditionally returns0.
+Other core libraries have requested case labels but are not runtime
+verified. Need real load/relocation/initialization tests and semantics,
+not invented success stubs. 226 supplied ordinal-span matches do not
+prove successful runtime linking/audio. See USA `iop_dependency_report.json`.
+
+## P-010 — Relocated zero export treated as terminator · FIXED
+
+Initial parser undercounted export spans; valid zero-link-address slots
+may carry R_MIPS_32 relocations. Added relocation-aware termination and a
+synthetic regression test; corrected v2 pass rehashed all41 originals,
+preserved16 slots, failed0. v1 export counts superseded; ROMDIR/asset/v1
+import hashes unaffected by this bug. Local canonical v2 copy checked
+against independent SQL SHA. No originals changed.
