@@ -207,18 +207,29 @@ See USA load_chain.md. Exact SDK version and one ambiguous version-helper
 identity remain unproven; short trampoline match is not auto-assigned.
 
 
-### P-006 next required input: owner US ELF attachment
+### P-006 next path: owner-authenticated browser import from Supabase
 
-No complete local ELF or authorized automatic bulk-download route is
-available. Continuing bounded scouts cannot substitute for the full-ELF
-milestone. Request only the owner's SLUS_204.86 attachment (3,942,320B),
-not an ISO, BIOS, credentials or Japanese executable. This is a required
-input the agent cannot currently retrieve, not a request for manual shell
-commands.
+The owner cannot attach files and explicitly requested Supabase retrieval.
+Do not request another attachment or media-extension workaround. Original
+public bucket/object confirmed read-only: ps2recomp/SLUS_204.86,3,942,320B.
+The current workspace ingress probe (pg_net request13) returned403 with
+missing e2b-traffic-access-token. No game bytes sent; probe stopped. The
+platform's documented traffic token is absent; no security bypass, token
+hunt, alias probe or disabled authentication is appropriate. Compression
+size-only measurement1,200,024B is not a successful file transfer.
 
-`scripts/import_us_elf.py ATTACHMENT_PATH` reads identity from target.sh,
-streams into an ignored temporary file, verifies size/SHA twice and
-atomically publishes game/working/SLUS_204.86 without overwriting existing
-different files. Source stays untouched. The agent will then run the
-existing full target gate and fase1_analyze.sh --recomp workflow; there is
-no hash override, upload relay or automatic claim of codegen success.
+New alternative: scripts/serve_supabase_import.py provides a small private
+preview. The normally authenticated owner's browser reads ONLY the fixed
+public Supabase object, without cloud credentials, verifies size/SHA and
+POSTs to a relative workspace endpoint with a per-process nonce. Backend
+checks fixed exact length/SHA and calls the existing atomic no-overwrite
+importer, independently rehashing the copied file. Source stays intact.
+No game bytes are served back, no arbitrary source/destination/command
+is accepted, and no permissive CORS or extra public storage is introduced.
+Agent-only --analyze queues one fixed full FASE1/codegen attempt after
+verified intake; a mocked runner test does not establish actual game codegen.
+Nine synthetic HTTP/mocked-runner tests pass; actual phone/Supabase CORS/preview delivery
+has NOT yet been confirmed. Do not mark P-006 resolved until the real local
+ELF passes target.sh. The owner only needs the preview button, not a file
+picker or shell commands. Existing CLI attachment import remains usable
+if a legitimate local source exists; attachment is no longer requested.

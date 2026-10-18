@@ -148,3 +148,29 @@ identity from target.sh, verifies the copied content independently and
 publishes atomically without overwriting a different target. It never
 moves/modifies the attachment or uploads game bytes to GitHub/Storage.
 Wrong files and destination races/symlinks are covered by7synthetic tests.
+
+## Supabase browser intake when the owner cannot attach
+
+The agent launches `python3 scripts/serve_supabase_import.py --port 8790 --analyze`
+as a managed live-preview process. The owner opens **Importação do Supabase**
+and taps **Buscar do meu Supabase**, without choosing/uploading a local file.
+Only the existing public ps2recomp/SLUS_204.86 object is fetched by the
+owner's browser. Preview authentication stays enabled; this is not a
+server-to-server retry of the rejected403 ingress probe.
+
+No cloud keys or credentials are needed. Browser checks exact length/SHA;
+backend requires a per-process nonce, exact length, no Transfer-Encoding,
+matching SHA and the atomic stage helper's independent copied-file hash.
+Only fixed routes/assets/metadata are served, never game bytes or arbitrary
+workspace paths. Nonce is not a Supabase key or E2B traffic token. No CORS
+permission is granted to third-party browser uploads.
+
+`--analyze` is agent-side opt-in: one fixed fase1_analyze.sh --recomp run
+is queued after verified intake (or an already independently verified
+local ELF). HTTP cannot select a command, arguments, source or destination.
+Log: builddir/logs/supabase-import-fase1.log; metadata state in /api/status.
+A successful process exit still requires the agent's review of real exports,
+comparison and C++; it never means Windows boot/gameplay. Without --analyze,
+this app is intake-only. Nine synthetic/mocked HTTP/workflow fixtures and
+projectCTest10/10 passed in the restored sandbox; phone CORS/authenticated
+end-to-end transfer is still awaiting real validation.

@@ -279,3 +279,30 @@ facts live under `analysis/scout/slus_20486/`; old root scout files are JP.
     mutation or existing-target overwrite (including races/symlinks).
     Import fixtures7/7; infra33/33, projectCTest9/9. No real full ELF was
     imported yet; no new game-map/codegen/runtime progress is claimed.
+
+51. **Owner cannot attach; attachment request in50 is superseded.** Fresh
+    read-only SQL confirmed the existing public ps2recomp bucket and exact
+    SLUS_204.86 object size3,942,320B.41staged chunks still contain the
+    verified full executable. Current server-to-server pg_net probe13 was
+    rejected403 for missing E2B traffic-token header; no game bytes sent.
+    Probe stopped; documented token absent, no security bypass attempted.
+    Compression size-only1,200,024B is not a transfer.
+52. Added a narrow authenticated-preview browser importer: fixed public
+    object only, no keys/file picker/arbitrary proxy, browser length/SHA,
+    nonce + backend exact length/SHA + independent atomic copied-file hash,
+    no overwrite and no serving game bytes. Agent opt-in queues one fixed
+    full FASE1/codegen attempt after successful real intake, not arbitrary
+    HTTP commands. Nine synthetic HTTP/mocked-runner fixtures pass;
+    mocked success is NOT real game codegen. Fresh projectCTest10/10,
+    JS syntax check passed. Real phone/Supabase CORS/preview transfer and
+    whole-US Ghidra/maps/C++ still unconfirmed; P-006 remains open.
+53. Fresh sandbox OSS-tool restoration finished exit0: pinned source clones,
+    hash-verified JDK/Ghidra archives, ps2_recomp/ps2_analyzer/map adapter
+    built and REA6.5.0 rebuilt. These are restored tools, not new native
+    Windows-game functionality. Previous infra33/33 is historical, not a
+    claim that every upstream suite was rerun in this sandbox.
+
+54. Restored Ghidra12.0.2/R5900 end-to-end probe rerun exit0: original
+    synthetic272B ELF → TOML/CSV → real analyzer parity/map comparison
+    → split C++. One shared start/one padding boundary disagreement is
+    preserved. This validates restored tools, not full-US game codegen.
