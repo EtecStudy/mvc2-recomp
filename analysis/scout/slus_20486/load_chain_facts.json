@@ -1,0 +1,440 @@
+{
+  "serial": "SLUS_204.86",
+  "elf_sha256": "48ebf907d8149122ca9bd622ed11c290d5f93173078ea5bd570e1ac5566f13d7",
+  "scope": "PARTIAL US windows only; not full ELF analysis or actual module execution",
+  "sdk_database": {
+    "upstream_commit": "eb8688b2fd191129f103a39543002c005b33409c",
+    "header_sha256": "0fdd1168a815c8af2529cae9076ae813a1304c5c3a41e48d88d38e21e7b5833d"
+  },
+  "captured_window_bytes": 1112,
+  "decoded_window_instructions": 278,
+  "entries": [
+    {
+      "entry": "0x0010b970",
+      "window": "load_core",
+      "signature_status": "unique_full_hash_match",
+      "candidates": [
+        {
+          "library": "libkernl",
+          "name": "_sceSifLoadModule",
+          "signature_bytes": 548,
+          "normalized_sha1": "94e15346f1af7faa9f4102107444705e629c5689",
+          "variant": "f9696511",
+          "unmasked_bits": 4046,
+          "database_versions": [
+            "2.2.0",
+            "2.2.1",
+            "2.2.2",
+            "2.2.4",
+            "2.3.0-5",
+            "2.3.0",
+            "2.3.4",
+            "2.4.0",
+            "2.4.1",
+            "2.4.2",
+            "2.4.3",
+            "2.5.0",
+            "2.5.2",
+            "2.5.3",
+            "2.5.4",
+            "2.5.5",
+            "2.6.0",
+            "2.7.0",
+            "2.7.1",
+            "2.8.0",
+            "3.0.0",
+            "3.1.0"
+          ],
+          "annotated_direct_transfers": [
+            {
+              "site": "0x0010b9a0",
+              "target": "0x0010b198",
+              "database_symbol_annotation": "_lf_bind",
+              "target_body_hash_verified_by_this_record": false
+            },
+            {
+              "site": "0x0010b9b0",
+              "target": "0x0010b298",
+              "database_symbol_annotation": "_lf_version",
+              "target_body_hash_verified_by_this_record": false
+            },
+            {
+              "site": "0x0010b9d8",
+              "target": "0x00120440",
+              "database_symbol_annotation": "strncpy",
+              "target_body_hash_verified_by_this_record": false
+            },
+            {
+              "site": "0x0010bb08",
+              "target": "0x0011d740",
+              "database_symbol_annotation": "memcpy",
+              "target_body_hash_verified_by_this_record": false
+            },
+            {
+              "site": "0x0010bb4c",
+              "target": "0x00106e68",
+              "database_symbol_annotation": "sceSifCallRpc",
+              "target_body_hash_verified_by_this_record": false
+            }
+          ]
+        }
+      ],
+      "ghidra_inferred_function": {
+        "entry": "0x0010b970",
+        "body_min": "0x0010b970",
+        "body_max": "0x0010bb93",
+        "body_bytes": 548,
+        "direct_calls": [
+          {
+            "site": "0x0010b9a0",
+            "target": "0x0010b198"
+          },
+          {
+            "site": "0x0010b9b0",
+            "target": "0x0010b298"
+          },
+          {
+            "site": "0x0010b9d8",
+            "target": "0x00120440"
+          },
+          {
+            "site": "0x0010bb08",
+            "target": "0x0011d740"
+          },
+          {
+            "site": "0x0010bb4c",
+            "target": "0x00106e68"
+          }
+        ]
+      }
+    },
+    {
+      "entry": "0x0010bb98",
+      "window": "load_entry",
+      "signature_status": "short_signature_candidate",
+      "candidates": [
+        {
+          "library": "libkernl",
+          "name": "sceSifLoadModule",
+          "signature_bytes": 32,
+          "normalized_sha1": "8166143678ce2489fcc1d9045139a45cecdb56da",
+          "variant": "dd5f7f12",
+          "unmasked_bits": 230,
+          "database_versions": [
+            "2.2.0",
+            "2.2.1",
+            "2.2.2",
+            "2.2.4",
+            "2.3.0-5",
+            "2.3.0",
+            "2.3.4",
+            "2.4.0",
+            "2.4.1",
+            "2.4.2",
+            "2.4.3",
+            "2.5.0",
+            "2.5.2",
+            "2.5.3",
+            "2.5.4",
+            "2.5.5",
+            "2.6.0",
+            "2.7.0",
+            "2.7.1",
+            "2.8.0",
+            "3.0.0",
+            "3.1.0"
+          ],
+          "annotated_direct_transfers": [
+            {
+              "site": "0x0010bba4",
+              "target": "0x0010b970",
+              "database_symbol_annotation": "_sceSifLoadModule",
+              "target_body_hash_verified_by_this_record": false
+            }
+          ]
+        }
+      ],
+      "ghidra_inferred_function": {
+        "entry": "0x0010bb98",
+        "body_min": "0x0010bb98",
+        "body_max": "0x0010bbb7",
+        "body_bytes": 32,
+        "direct_calls": [
+          {
+            "site": "0x0010bba4",
+            "target": "0x0010b970"
+          }
+        ]
+      }
+    },
+    {
+      "entry": "0x0010b198",
+      "window": "load_bind",
+      "signature_status": "unique_full_hash_match",
+      "candidates": [
+        {
+          "library": "libkernl",
+          "name": "_lf_bind",
+          "signature_bytes": 256,
+          "normalized_sha1": "2426aece103d8d125220d478f93a733b91934e84",
+          "variant": "d100ccbf",
+          "unmasked_bits": 1820,
+          "database_versions": [
+            "2.0.0",
+            "2.0.2",
+            "2.0.5",
+            "2.1.0",
+            "2.1.1",
+            "2.1.3",
+            "2.1.4",
+            "2.2.0",
+            "2.2.1",
+            "2.2.2",
+            "2.2.4",
+            "2.3.0-5",
+            "2.3.0",
+            "2.3.4",
+            "2.4.0",
+            "2.4.1",
+            "2.4.2",
+            "2.4.3",
+            "2.5.0",
+            "2.5.2",
+            "2.5.3",
+            "2.5.4",
+            "2.5.5",
+            "2.6.0",
+            "2.7.0",
+            "2.7.1",
+            "2.8.0",
+            "3.0.0",
+            "3.1.0"
+          ],
+          "annotated_direct_transfers": [
+            {
+              "site": "0x0010b1cc",
+              "target": "0x00106c98",
+              "database_symbol_annotation": "sceSifBindRpc",
+              "target_body_hash_verified_by_this_record": false
+            },
+            {
+              "site": "0x0010b210",
+              "target": "0x00106e68",
+              "database_symbol_annotation": "sceSifCallRpc",
+              "target_body_hash_verified_by_this_record": false
+            }
+          ]
+        }
+      ],
+      "ghidra_inferred_function": {
+        "entry": "0x0010b198",
+        "body_min": "0x0010b198",
+        "body_max": "0x0010b297",
+        "body_bytes": 256,
+        "direct_calls": [
+          {
+            "site": "0x0010b1cc",
+            "target": "0x00106c98"
+          },
+          {
+            "site": "0x0010b210",
+            "target": "0x00106e68"
+          }
+        ]
+      }
+    },
+    {
+      "entry": "0x0010b298",
+      "window": "load_bind",
+      "signature_status": "ambiguous_identity",
+      "candidates": [
+        {
+          "library": "libkernl",
+          "name": "_fs_version",
+          "signature_bytes": 140,
+          "normalized_sha1": "db4e90d7867018764d3d227af738c9ad812e582d",
+          "variant": "690460a8",
+          "unmasked_bits": 930,
+          "database_versions": [
+            "2.2.0",
+            "2.2.1",
+            "2.2.2",
+            "2.2.4",
+            "2.3.0-5",
+            "2.3.0",
+            "2.3.4",
+            "2.4.0",
+            "2.4.1",
+            "2.4.2",
+            "2.4.3",
+            "2.5.0",
+            "2.5.2",
+            "2.5.3",
+            "2.5.4",
+            "2.5.5",
+            "2.6.0",
+            "2.7.0",
+            "2.7.1",
+            "2.8.0",
+            "3.0.0",
+            "3.1.0"
+          ],
+          "annotated_direct_transfers": [
+            {
+              "site": "0x0010b2cc",
+              "target": "0x0011d6a8",
+              "database_symbol_annotation": "memcmp",
+              "target_body_hash_verified_by_this_record": false
+            },
+            {
+              "site": "0x0010b2e4",
+              "target": "0x0011d6a8",
+              "database_symbol_annotation": "memcmp",
+              "target_body_hash_verified_by_this_record": false
+            },
+            {
+              "site": "0x0010b2f8",
+              "target": "0x0011d6a8",
+              "database_symbol_annotation": "memcmp",
+              "target_body_hash_verified_by_this_record": false
+            }
+          ]
+        },
+        {
+          "library": "libkernl",
+          "name": "_lf_version",
+          "signature_bytes": 140,
+          "normalized_sha1": "db4e90d7867018764d3d227af738c9ad812e582d",
+          "variant": "690460a8",
+          "unmasked_bits": 930,
+          "database_versions": [
+            "2.2.0",
+            "2.2.1",
+            "2.2.2",
+            "2.2.4",
+            "2.3.0-5",
+            "2.3.0",
+            "2.3.4",
+            "2.4.0",
+            "2.4.1",
+            "2.4.2",
+            "2.4.3",
+            "2.5.0",
+            "2.5.2",
+            "2.5.3",
+            "2.5.4",
+            "2.5.5",
+            "2.6.0",
+            "2.7.0",
+            "2.7.1",
+            "2.8.0",
+            "3.0.0",
+            "3.1.0"
+          ],
+          "annotated_direct_transfers": [
+            {
+              "site": "0x0010b2cc",
+              "target": "0x0011d6a8",
+              "database_symbol_annotation": "memcmp",
+              "target_body_hash_verified_by_this_record": false
+            },
+            {
+              "site": "0x0010b2e4",
+              "target": "0x0011d6a8",
+              "database_symbol_annotation": "memcmp",
+              "target_body_hash_verified_by_this_record": false
+            },
+            {
+              "site": "0x0010b2f8",
+              "target": "0x0011d6a8",
+              "database_symbol_annotation": "memcmp",
+              "target_body_hash_verified_by_this_record": false
+            }
+          ]
+        }
+      ],
+      "ghidra_inferred_function": {
+        "entry": "0x0010b298",
+        "body_min": "0x0010b298",
+        "body_max": "0x0010b323",
+        "body_bytes": 140,
+        "direct_calls": [
+          {
+            "site": "0x0010b2cc",
+            "target": "0x0011d6a8"
+          },
+          {
+            "site": "0x0010b2e4",
+            "target": "0x0011d6a8"
+          },
+          {
+            "site": "0x0010b2f8",
+            "target": "0x0011d6a8"
+          }
+        ]
+      }
+    }
+  ],
+  "native_fragment_scan": {
+    "derived_elf": true,
+    "original_game_file_modified": false,
+    "records": [
+      {
+        "Name": "_sceSifLoadModule",
+        "Start": "0x0010b970",
+        "End": "0x0010bb98",
+        "Size": "552"
+      }
+    ],
+    "note": "Native scanner extends matching signature over trailing NOPs. This is not the original full ELF."
+  },
+  "all_local_window_scope": {
+    "windows": 8,
+    "nonoverlapping_bytes": 2488,
+    "decoded_instructions": 620
+  },
+  "protocol_observations": {
+    "loadfile_bind_sid": "0x80000006",
+    "sid_instruction_sites": [
+      "0x0010b1c0",
+      "0x0010b1c8"
+    ],
+    "bind_call_site": "0x0010b1cc",
+    "bind_call_target": "0x00106c98",
+    "bind_target_name_source": "sceSifBindRpc annotation in matched _lf_bind signature; target body not hashed here",
+    "client_address": "0x004c7080",
+    "send_and_receive_buffer": "0x004c6e80",
+    "module_rpc_call_site": "0x0010bb4c",
+    "rpc_target": "0x00106e68",
+    "rpc_target_name_source": "sceSifCallRpc annotation shared by strong core/bind matches; target body not hashed here",
+    "load_request_send_bytes": 512,
+    "load_request_receive_bytes": 8,
+    "bootstrap_probe_function": 255,
+    "bootstrap_probe_receive_bytes": 4,
+    "thin_entry_sets_t0_zero": true,
+    "ordinary_load_rpc_function": 0,
+    "function_zero_evidence": "Thin t0=0; core preserves t0 in s3 and moves s3 into a1 at 0x0010bb30. Static path only.",
+    "request_layout_inferred": {
+      "arg_length_offset": 0,
+      "path_offset": 8,
+      "path_capacity": 252,
+      "arguments_offset": 260,
+      "arguments_capacity": 252
+    },
+    "source": "Bounded Ghidra decompilation, instruction operands and normalized SDK signature annotations; no runtime trace",
+    "tsnddrv_own_rpc_sid_established": false
+  },
+  "runtime_source_review": {
+    "pin": "eb8688b2fd191129f103a39543002c005b33409c",
+    "path": "ps2xIOP/src/iop_subsystem.cpp",
+    "finding": "Core service factories are MCSERV/DBCMAN/LIBSD, not LOADFILE. canBindRpc needs a route or an actually registered emulated server. Runtime handling of this guest loader path remains untested; no fake descriptor/stub was added."
+  },
+  "limitations": [
+    "SDK signature matches are relative to the pinned database, not exact game SDK-version proof.",
+    "Thin32B trampoline has only230 unmasked bits: short candidate, no automatic name assignment.",
+    "Relocation annotations suggest callee names but do not independently hash their target bodies.",
+    "Partial decompiler types/ABI/globals are inferred; no RPC response or runtime load order observed."
+  ],
+  "full_us_elf_analysis_complete": false,
+  "whole_game_cpp_generated": false
+}

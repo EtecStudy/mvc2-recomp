@@ -23,8 +23,8 @@ file rows were added to `build_targets`/`disc_files`; old JP rows remain
 historical. Only `AFS01.AFS` and `AFS03.AFS` were listed under `PS2/`;
 full-disc completeness/ISO format/LBAs have not been established.
 
-Small controlled SQL→hex→local transfers provided **1,376 verified bytes**
-from five US code windows. Ghidra decoded 342 instructions in total. The
+Small controlled SQL→hex→local transfers provided **2,488 verified bytes**
+from eight US code windows. Ghidra decoded 620 instructions in total. The
 first four windows establish 13 LUI/ADDIU sites and 11 calls to
 `0x003DCAD0`; the fifth window provides a partial retry-wrapper
 interpretation corroborated by `Can't load module %s\n` (US address
@@ -164,3 +164,20 @@ The adapter's TOML equals the upstream CLI's on that fixture, and the
 Ghidra-derived config still generates C++. See
 `analysis/validation/analyzer_crosscheck_probe.json`. **No US whole-game
 map comparison has yet run** because the complete ELF is still not local.
+
+
+## Static USA module-load chain
+
+Three new windows trace003DCAD0→0010BB98(short `sceSifLoadModule`
+candidate)→0010B970(full548-byte `_sceSifLoadModule` match, corroborated
+by the native scanner on a clearly derived fragment ELF). Binder0010B198
+matches `_lf_bind` and builds LOADFILE SID**80000006**. Its version helper
+at0010B298 matches both `_lf_version` and `_fs_version`; do not resolve
+this ambiguity from a hash alone. No exact SDK version is established.
+
+Inferred ordinary-load request uses function0,512send/8receive bytes;
+bootstrap probes functionFF with4receive bytes. These are code/decompiler
+observations, not a successful RPC. Target bodies annotated by SDK call
+relocations were not independently hashed. TSNDDRV's own sound SID still
+unknown. See `analysis/scout/slus_20486/load_chain.md` for call sites,
+hashes, packet observations and runtime/bootstrap caveats.

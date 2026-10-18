@@ -188,3 +188,20 @@ all41 staged chunks:3,942,320B, expected US SHA, verified=true. No new
 binary delivery route was found; unchanged TLS/receiver/public game-data
 relay routes were not repeated. Actual pipeline still exits2 on absent
 full US ELF before analysis/codegen; no target bypass introduced.
+
+
+## P-012 — Guest LOADFILE bootstrap route requires validation · OPEN, conditional runtime risk
+
+New real-US static evidence matches the loader core and binder and shows
+SID80000006, version probeFF and ordinary module RPCfunction0. This is
+not TSNDDRV's own SID. Pinned IopSubsystem factories provide MCSERV,
+DBCMAN and LIBSD, not LOADFILE HLE; canBindRpc requires an active route
+or registered emulated server. Uploaded ROM#LOADFILE presence is not
+proof of loading/registration.
+
+Before declaring the guest path operational, exercise real LOADFILE
+initialization/RPC behavior or separately review an exact legitimate
+named HLE hook. No fake server/success stub was added. Need full game
+codegen/runtime integration to observe boot; no hang/crash claimed.
+See USA load_chain.md. Exact SDK version and one ambiguous version-helper
+identity remain unproven; short trampoline match is not auto-assigned.

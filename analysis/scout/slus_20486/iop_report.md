@@ -122,5 +122,11 @@ A separate metadata migration added 41 USA IOP rows with runtime status
 `unknown`; no instruction counts or runtime load bases were guessed.
 
 The full US EE ELF is still not in the sandbox. Local verified scope is
-now **five windows / 1,376 bytes / 342 decoded instructions**. This does
+now **eight windows / 2,488 bytes / 620 decoded instructions**. This does
 not replace authoritative full-ELF export or game C++ generation (P-006).
+
+
+Follow-up: `load_chain.md` now traces the wrapper's callee to a548-byte
+SDK implementation match and the LOADFILE bindSID80000006, with explicit
+short/ambiguous signature cases. This does not identify TSNDDRV's own SID
+or prove that any supplied IOP module has executed.

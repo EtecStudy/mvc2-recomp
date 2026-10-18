@@ -198,3 +198,12 @@ Ghidra→independent native analyzer map comparison→C++ passed, including
 explicitly reported unequal end extents. Offline dependency rebuild
 passed. See `analysis/validation/analyzer_crosscheck_probe.json`; these
 are infrastructure facts, not successful game analysis.
+
+
+### Actual US bounded load-chain follow-up
+
+2026-10-17:infra32/32, projectCTest8/8, SDK matcher5/5, offline facts6/6,
+GS45/45 and IOP4/4. Actual US partial Ghidra and native signature scan
+passed separately; this is real game static evidence but still **not**
+a whole-game map/codegen/runtime test. Source proofs and limitations:
+`analysis/scout/slus_20486/load_chain.md`.

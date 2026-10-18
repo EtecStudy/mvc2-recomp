@@ -1,0 +1,36 @@
+{
+  "serial": "SLUS_204.86",
+  "elf_sha256": "48ebf907d8149122ca9bd622ed11c290d5f93173078ea5bd570e1ac5566f13d7",
+  "source": "Bounded SQL substrings over SHA-verified US ELF reassembly; VA=file offset+0xfff80",
+  "warning": "Partial static windows only, NOT the full ELF or runtime order. Bytes and derived fragment ELF stay ignored.",
+  "windows": [
+    {
+      "name": "load_core",
+      "va": "0x0010b970",
+      "bytes": 552,
+      "sha256": "7e958d33043f949544a252b8aa7bfb15cccd11121c3031b2105a62a05666e91c",
+      "entry_offsets": [
+        0
+      ]
+    },
+    {
+      "name": "load_entry",
+      "va": "0x0010bb98",
+      "bytes": 160,
+      "sha256": "9996b323df26ff3f93eccde3193bb88d5507ef1136d29a06083f7ab7eedaa7ce",
+      "entry_offsets": [
+        0
+      ]
+    },
+    {
+      "name": "load_bind",
+      "va": "0x0010b198",
+      "bytes": 400,
+      "sha256": "28f64d3dcb1d09e7b039baaf2c652e3d5f05e5e04276660fa359f3eafd659614",
+      "entry_offsets": [
+        0,
+        256
+      ]
+    }
+  ]
+}

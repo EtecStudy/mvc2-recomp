@@ -59,7 +59,7 @@ Do not use the historical `../syscall_map.*` as US address evidence.
   with three direct calls and corroborating module-load error string.
   `bash scripts/fase1_helper.sh` reproduces the partial local analysis.
 
-Current combined window scope: **1,376 bytes / 342 decoded instructions**,
+Current combined window scope: **8 windows / 2,488 bytes / 620 decoded instructions**,
 not a full executable. Raw bytes/pseudocode remain in ignored directories.
 
 ## Provenance / cleanup
@@ -106,3 +106,15 @@ source is a reusable template, not the exact inline v2 reparse deployment
 body; the live reparse also used v1 original source identities to recheck
 all hashes. `build_iop_edge.py` assembles an ignored deployment copy;
 never commit that token-bearing output. No new deployment is needed now.
+
+
+## Module-load chain: new US evidence
+
+`load_chain.md` / `load_chain_facts.json` add three SHA-gated windows
+(1,112B/278instructions). Core entry0010B970 matches the full548-byte
+`_sceSifLoadModule` signature; independent native fragment scan agrees.
+Binder0010B198 matches `_lf_bind` and constructs SID80000006. This is
+**LOADFILE, not TSNDDRV's own SID**. Thin0010BB98 remains a short candidate;
+0010B298 matches both `_lf_version` and `_fs_version` and remains ambiguous.
+No automatic Ghidra naming/stubs, executed boot order or whole-game map.
+Run `bash scripts/fase1_load_chain.sh` when ignored window bytes exist.

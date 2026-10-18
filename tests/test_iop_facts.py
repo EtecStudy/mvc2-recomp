@@ -78,6 +78,20 @@ class FactsTests(unittest.TestCase):
         for f in a['uploaded_afs']:
             self.assertLessEqual(f['required_payload_end'], f['bytes'])
 
+    def test_load_chain_signature_scope(self):
+        r = load('load_chain_facts.json')
+        e = {x['entry']:x for x in r['entries']}
+        self.assertEqual((r['captured_window_bytes'],r['decoded_window_instructions']),(1112,278))
+        self.assertEqual(r['all_local_window_scope'],dict(windows=8,nonoverlapping_bytes=2488,decoded_instructions=620))
+        self.assertEqual(e['0x0010b970']['candidates'][0]['name'],'_sceSifLoadModule')
+        self.assertEqual(e['0x0010b970']['signature_status'],'unique_full_hash_match')
+        self.assertEqual(e['0x0010bb98']['signature_status'],'short_signature_candidate')
+        self.assertEqual(e['0x0010b298']['signature_status'],'ambiguous_identity')
+        self.assertEqual({c['name'] for c in e['0x0010b298']['candidates']},{'_lf_version','_fs_version'})
+        self.assertEqual(r['protocol_observations']['loadfile_bind_sid'],'0x80000006')
+        self.assertFalse(r['protocol_observations']['tsnddrv_own_rpc_sid_established'])
+        self.assertFalse(r['full_us_elf_analysis_complete'])
+
     def test_static_dependency_caveats(self):
         r = load('iop_dependency_report.json')
         self.assertEqual(r['ordinal_span_available_tables'] + r['no_uploaded_export_tables'], 284)

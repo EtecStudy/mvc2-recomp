@@ -246,3 +246,28 @@ facts live under `analysis/scout/slus_20486/`; old root scout files are JP.
     reverified in SQL; full local ELF still absent (pipeline exit2).
     Synthetic map/C++ success must not be reported as US whole-game
     exports/analyzer comparison/codegen.
+
+
+## Actual US load-chain evidence — 2026-10-17
+
+45. Three additional SHA-gated US windows,1,112B/278instructions,
+    decompiled at four requested entries. Combined scope8windows,
+    2,488non-overlapping bytes/620instructions, still not the full ELF.
+46. Core0010B970 matches complete normalized548-byte `_sceSifLoadModule`
+    signature (4,046unmasked bits), corroborated by native analyzer on
+    a derived fragment ELF. Native extent552 includes one trailing NOP;
+    Ghidra body548. No fragment C++ generation or full-game gate bypass.
+47. Thin0010BB98 matches32-byte `sceSifLoadModule` at230unmasked bits,
+    kept as a short candidate. Binder0010B198 uniquely matches `_lf_bind`;
+    version helper0010B298 matches BOTH `_lf_version` and `_fs_version`.
+    Ambiguity preserved, no automatic Ghidra rename/stub/SDK-version claim.
+48. Binder builds SID80000006; ordinary module-load path statically uses
+    RPCfunction0,512send/8receive bytes. Bootstrap probeFF receives4bytes.
+    This is LOADFILE, NOT TSNDDRV's own SID. No bind/reply/runtime trace.
+    Core HLE service factories omit LOADFILE; route or actual emulated
+    server registration must be tested, not faked (P-012).
+49. Ghidra partial workflow and independent native core scan passed.
+    Matcher fixtures5/5 (masking, full hash, short/ambiguous, malformed
+    relocation, header/window gates); offline fact checks now6/6.
+    Infra32/32, projectCTest8/8, GS45/45, IOP4/4. Originals untouched,
+    no new temporary Edge/token, full US game exports/codegen still absent.

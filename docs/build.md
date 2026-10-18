@@ -123,3 +123,16 @@ FULLY_DISCONNECTED were used in a successful rebuild. Pin/digest details:
 `tools/analyzer_deps.json`. No archive/game bytes are committed. Initial
 restore caught an incorrect CMakeLists assumption for Rabbitizer; fixed
 to its actual include/rabbitizer.h sentinel and covered by restore tests.
+
+
+## Bounded US load-chain analysis (not whole-game codegen)
+
+`bash scripts/fase1_load_chain.sh` verifies three ignored source windows,
+imports them into a separate Ghidra12.0.2/EE project, decompiles four
+entries, checks full relocation-normalized SDK signatures and corroborates
+the core with the native analyzer on a **derived fragment ELF**. It never
+calls the full-game pipeline on a fragment and never generates game C++.
+Required bytes come from the read-only capture_us_load_chain.sql route;
+full source hashes/entry offsets are in load_chain_windows.json. Raw
+bytes, derived ELF/TOML/CSV and pseudocode remain ignored. Fact report:
+`analysis/scout/slus_20486/load_chain_facts.json`.
