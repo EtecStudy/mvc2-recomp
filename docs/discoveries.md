@@ -271,3 +271,11 @@ facts live under `analysis/scout/slus_20486/`; old root scout files are JP.
     relocation, header/window gates); offline fact checks now6/6.
     Infra32/32, projectCTest8/8, GS45/45, IOP4/4. Originals untouched,
     no new temporary Edge/token, full US game exports/codegen still absent.
+
+
+50. **Next milestone now requires the owner's US file attachment**, not
+    further tiny scouts. Added/tested atomic local intake from attachments
+    with pinned size/SHA, independent copied-file verification, no source
+    mutation or existing-target overwrite (including races/symlinks).
+    Import fixtures7/7; infra33/33, projectCTest9/9. No real full ELF was
+    imported yet; no new game-map/codegen/runtime progress is claimed.

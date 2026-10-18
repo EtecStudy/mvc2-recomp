@@ -10,9 +10,10 @@ Ghidra 12.1.4 + [REA](https://github.com/morluto/rea).
 > verified size is 3,942,320 bytes; SHA-256 is pinned in `scripts/target.sh`.
 > FASE 1: server-side ELF verified, eight local windows decoded in Ghidra;
 > full-ELF analysis and US game C++ generation remain pending.
+> Next required input: owner attachment `SLUS_204.86` (3,942,320 bytes).
 > Earlier Japanese inventory/scouting is historical only, not US evidence.
 > Toolchain tested: synthetic Ghidra → independent analyzer comparison → C++.
-> Infrastructure 32/32; full US ELF transfer is still the blocking step.
+> Infrastructure 33/33; full US ELF transfer is still the blocking step.
 > US load chain: SDK core signature + LOADFILE SID `0x80000006` observed statically.
 > IOP: 41 images inventoried; AFS00/AFS02 missing from uploaded US list.
 > USA findings: [`analysis/scout/slus_20486/`](analysis/scout/slus_20486/).

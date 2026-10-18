@@ -75,6 +75,9 @@ python3 tests/test_restore_analyzer_deps.py >/dev/null 2>&1 \
 python3 tests/test_sdk_window.py >/dev/null 2>&1 \
   && ok "bounded SDK matching / ambiguity / relocation / hash regression" || bad "SDK matching" "tests/test_sdk_window.py failed"
 
+python3 tests/test_import_us_elf.py >/dev/null 2>&1 \
+  && ok "owner US ELF intake / hash gate / no overwrite" || bad "US ELF import" "tests/test_import_us_elf.py failed"
+
 sect "USA IOP metadata"
 node --test tests/test_iop_inventory.mjs >/dev/null 2>&1 \
   && ok "IRX/ROMDIR parser fixtures (including relocated-zero export)" || bad "IOP parser" "fixture test failed"

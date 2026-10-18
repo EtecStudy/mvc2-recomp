@@ -115,8 +115,8 @@ Initially four US windows (992 bytes) yielded 246 decoded instructions;
 the fifth helper window adds 384 bytes / 96 instructions (total 1,376/342). This is useful scouting, **not a full ELF transfer**.
 The full ELF is still absent, so full function export and game codegen
 remain blocked. The new hash gate is active (not pending verification).
-No user action is requested now; keep pursuing efficient authorized byte
-delivery while advancing scoped analysis. Never ask for the Japanese ELF.
+Earlier passes advanced scoped analysis while pursuing authorized byte
+delivery. That does not replace the required owner-file intake below. Never ask for the Japanese ELF.
 
 Toolchain restoration is complete for this snapshot, with tests rerun;
 see `docs/discoveries.md` and the US scout README for proof and limitations.
@@ -205,3 +205,20 @@ named HLE hook. No fake server/success stub was added. Need full game
 codegen/runtime integration to observe boot; no hang/crash claimed.
 See USA load_chain.md. Exact SDK version and one ambiguous version-helper
 identity remain unproven; short trampoline match is not auto-assigned.
+
+
+### P-006 next required input: owner US ELF attachment
+
+No complete local ELF or authorized automatic bulk-download route is
+available. Continuing bounded scouts cannot substitute for the full-ELF
+milestone. Request only the owner's SLUS_204.86 attachment (3,942,320B),
+not an ISO, BIOS, credentials or Japanese executable. This is a required
+input the agent cannot currently retrieve, not a request for manual shell
+commands.
+
+`scripts/import_us_elf.py ATTACHMENT_PATH` reads identity from target.sh,
+streams into an ignored temporary file, verifies size/SHA twice and
+atomically publishes game/working/SLUS_204.86 without overwriting existing
+different files. Source stays untouched. The agent will then run the
+existing full target gate and fase1_analyze.sh --recomp workflow; there is
+no hash override, upload relay or automatic claim of codegen success.

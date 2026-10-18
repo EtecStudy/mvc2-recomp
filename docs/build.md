@@ -136,3 +136,15 @@ Required bytes come from the read-only capture_us_load_chain.sql route;
 full source hashes/entry offsets are in load_chain_windows.json. Raw
 bytes, derived ELF/TOML/CSV and pseudocode remain ignored. Fact report:
 `analysis/scout/slus_20486/load_chain_facts.json`.
+
+
+## Owner attachment intake (agent-run)
+
+After the owner attaches only the extracted US SLUS_204.86, the agent
+runs `python3 scripts/import_us_elf.py ATTACHMENT_PATH`, then the existing
+`fase1_analyze.sh game/working/SLUS_204.86 --recomp` workflow. No manual
+shell commands are requested from the owner. Import reads the pinned
+identity from target.sh, verifies the copied content independently and
+publishes atomically without overwriting a different target. It never
+moves/modifies the attachment or uploads game bytes to GitHub/Storage.
+Wrong files and destination races/symlinks are covered by7synthetic tests.

@@ -19,3 +19,5 @@ add_test(NAME infra.function_map_comparison COMMAND "${Python3_EXECUTABLE}" "${C
 add_test(NAME infra.analyzer_deps_restore COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/test_restore_analyzer_deps.py")
 
 add_test(NAME infra.sdk_window_match COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/test_sdk_window.py")
+
+add_test(NAME infra.us_elf_import COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/test_import_us_elf.py")
